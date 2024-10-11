@@ -1,0 +1,175 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+h1 {
+  color: #333;
+  text-align: center;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.input-section {
+  flex: 1;
+  min-width: 300px;
+}
+.output-section {
+  flex: 2;
+  min-width: 300px;
+}
+.input-group {
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+}
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.radio-pair {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.radio-label {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.radio-label:hover {
+  background-color: #e9e9e9;
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"]:checked + .radio-label {
+  background-color: #4CAF50;
+  color: white;
+}
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #45a049;
+}
+#result {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+@media (max-width: 768px) {
+  .radio-label {
+      flex: 1 0 45%;
+  }
+  .container {
+      flex-direction: column;
+  }
+  .input-section, .output-section {
+      width: 100%;
+  }
+}
+.salary-sacrifice {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+.salary-sacrifice label {
+  display: inline-block;
+  margin-right: 10px;
+}
+.salary-sacrifice-input {
+  display: flex;
+  align-items: center;
+}
+.salary-sacrifice-input label {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+.salary-sacrifice-input input {
+  flex: 1;
+}
+.tax-savings {
+  margin-top: 20px;
+  background-color: #e8f5e9;
+  padding: 15px;
+  border-radius: 5px;
+}
+.tax-savings h3 {
+  margin-top: 0;
+  color: #2e7d32;
+}
+.tax-savings .saved {
+  color: #2e7d32;
+  font-weight: bold;
+}
+.input-group input[type="text"],
+.input-group button {
+  width: 100%;
+  box-sizing: border-box;
+}
+.input-summary {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.input-summary .highlight {
+  font-weight: bold;
+  color: #4CAF50;
+}
