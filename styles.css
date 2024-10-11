@@ -240,3 +240,25 @@ th {
     font-size: 0.7em;
   }
 }
+
+.center-align {
+  text-align: center;
+}
+
+.right-align {
+  text-align: right;
+}
+
+#result table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#result th, #result td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+#result th {
+  background-color: #f2f2f2;
+}

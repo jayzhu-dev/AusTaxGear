@@ -22,7 +22,7 @@ function calculateTax() {
       case 'weekly': annualIncome *= 52; break;
   }
 
-  displayInputSummary(annualIncome);
+  displayInputSummary(annualIncome, salarySacrifice);
 
   const originalTax = calculateTaxAmount(annualIncome);
   const newTax = calculateTaxAmount(annualIncome - salarySacrifice);
@@ -45,11 +45,19 @@ function calculateTaxAmount(income) {
   return 51667 + (income - 180000) * 0.45;
 }
 
-function displayInputSummary(annualIncome) {
-  const summary = `
-      <p>您的年度总收入为 <span class="highlight">$${formatNumber(annualIncome)}</span> 澳元<br>
-      <span class="en">Your annual gross income is <span class="highlight">$${formatNumber(annualIncome)}</span> AUD</span></p>
+function displayInputSummary(annualIncome, salarySacrifice) {
+  let summary = `
+    <p>您的年度总收入为 <span class="highlight">$${formatNumber(annualIncome)}</span> 澳元<br>
+    <span class="en">Your annual gross income is <span class="highlight">$${formatNumber(annualIncome)}</span> AUD</span></p>
   `;
+
+  if (enableSalarySacrifice.checked && salarySacrifice > 0) {
+    summary += `
+      <p>您选择的负扣税金额为 <span class="highlight">$${formatNumber(salarySacrifice)}</span> 澳元<br>
+      <span class="en">Your selected salary sacrifice amount is <span class="highlight">$${formatNumber(salarySacrifice)}</span> AUD</span></p>
+    `;
+  }
+
   document.getElementById('inputSummary').innerHTML = summary;
 }
 
@@ -66,10 +74,10 @@ function displayResult(annualIncome, tax, netIncome) {
       <h3>计算结果<br><span class="en">Calculation Results</span></h3>
       <table>
           <tr>
-              <th>薪资周期<br><span class="en">Payment Frequency</span></th>
-              <th>总收入<br><span class="en">Gross Income</span></th>
-              <th>税额<br><span class="en">Tax</span></th>
-              <th>净收入<br><span class="en">Net Income</span></th>
+              <th class="center-align">薪资周期<br><span class="en">Payment Frequency</span></th>
+              <th class="right-align">总收入<br><span class="en">Gross Income</span></th>
+              <th class="right-align">税额<br><span class="en">Tax</span></th>
+              <th class="right-align">净收入<br><span class="en">Net Income</span></th>
           </tr>
   `;
 
@@ -77,10 +85,10 @@ function displayResult(annualIncome, tax, netIncome) {
     const { label, factor } = frequencyFactor[freq];
     resultHTML += `
           <tr>
-              <td>${label}</td>
-              <td>$${formatNumber(annualIncome * factor)}</td>
-              <td>$${formatNumber(tax * factor)}</td>
-              <td>$${formatNumber(netIncome * factor)}</td>
+              <td class="center-align">${label}</td>
+              <td class="right-align">$${formatNumber(annualIncome * factor, 2)}</td>
+              <td class="right-align">$${formatNumber(tax * factor, 2)}</td>
+              <td class="right-align">$${formatNumber(netIncome * factor, 2)}</td>
           </tr>
       `;
   }
