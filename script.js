@@ -82,11 +82,11 @@ function displayTaxSavings(originalTax, newTax, taxSaved) {
   const taxSavingsDiv = document.getElementById('taxSavings');
   taxSavingsDiv.style.display = 'block';
   taxSavingsDiv.innerHTML = `
-      <h3>负扣税影响 (澳元/年)<br><span class="en">Salary Sacrifice Impact (AUD/Year)</span></h3>
+      <h3>负扣税影响 (澳元/年)<br><span class="en">Impact of Negative Gearing (AUD/Year)</span></h3>
       <p>原始应纳税额: $${formatNumber(originalTax)}<br>
-      <span class="en">Original Tax: $${formatNumber(originalTax)}</span></p>
+      <span class="en">Original Taxable Amount: $${formatNumber(originalTax)}</span></p>
       <p>负扣税后应纳税额: $${formatNumber(newTax)}<br>
-      <span class="en">Tax After Salary Sacrifice: $${formatNumber(newTax)}</span></p>
+      <span class="en">Taxable Amount After Negative Gearing: $${formatNumber(newTax)}</span></p>
       <p>预计可省税额: <span class="saved">$${formatNumber(taxSaved)}</span><br>
       <span class="en">Estimated Tax Savings: <span class="saved">$${formatNumber(taxSaved)}</span></span></p>
   `;
