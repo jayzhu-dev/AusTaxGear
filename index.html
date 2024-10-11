@@ -72,6 +72,16 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .input-summary {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .input-summary .highlight {
+        font-weight: bold;
+        color: #4CAF50;
+        font-size: 1.2em;
+    }
   </style>
 </head>
 
@@ -138,7 +148,69 @@
 
   <script src="script.js"></script>
   <script>
-    // ... 其他JavaScript代码保持不变 ...
+    function calculateTax() {
+      const income = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
+      const frequency = document.querySelector('input[name="frequency"]:checked').value;
+      const taxType = document.querySelector('input[name="taxType"]:checked').value;
+      const enableSalarySacrifice = document.getElementById('enableSalarySacrifice').checked;
+      const salarySacrifice = enableSalarySacrifice ? parseFloat(document.getElementById('salarySacrifice').value.replace(/,/g, '')) || 0 : 0;
+
+      let annualIncome = income;
+      switch (frequency) {
+        case 'monthly': annualIncome *= 12; break;
+        case 'fortnightly': annualIncome *= 26; break;
+        case 'weekly': annualIncome *= 52; break;
+      }
+
+      displayInputSummary(annualIncome);
+
+      const originalTax = calculateTaxAmount(annualIncome);
+      const newTax = calculateTaxAmount(annualIncome - salarySacrifice);
+      const taxSaved = originalTax - newTax;
+
+      displayResult(annualIncome, originalTax, annualIncome - originalTax);
+      if (enableSalarySacrifice) {
+        displayTaxSavings(originalTax, newTax, taxSaved);
+      } else {
+        document.getElementById('taxSavings').style.display = 'none';
+      }
+    }
+
+    function calculateTaxAmount(income) {
+      // 2023-2024澳大利亚个人所得税税率
+      if (income <= 18200) return 0;
+      if (income <= 45000) return (income - 18200) * 0.19;
+      if (income <= 120000) return 5092 + (income - 45000) * 0.325;
+      if (income <= 180000) return 29467 + (income - 120000) * 0.37;
+      return 51667 + (income - 180000) * 0.45;
+    }
+
+    function displayResult(annualIncome, tax, netIncome) {
+      const resultDiv = document.getElementById('result');
+      const frequencyFactor = {
+        'annually': { label: '每年', factor: 1 },
+        'monthly': { label: '每月', factor: 1/12 },
+        'fortnightly': { label: '每两周', factor: 1/26 },
+        'weekly': { label: '每周', factor: 1/52 }
+      };
+
+      let resultHTML = '<h3>计算结果</h3><table><tr><th>频率</th><th>总收入</th><th>税额</th><th>净收入</th></tr>';
+
+      for (let freq in frequencyFactor) {
+        const { label, factor } = frequencyFactor[freq];
+        resultHTML += `
+          <tr>
+            <td>${label}</td>
+            <td>$${formatNumber(annualIncome * factor)}</td>
+            <td>$${formatNumber(tax * factor)}</td>
+            <td>$${formatNumber(netIncome * factor)}</td>
+          </tr>
+        `;
+      }
+
+      resultHTML += '</table>';
+      resultDiv.innerHTML = resultHTML;
+    }
 
     function displayTaxSavings(originalTax, newTax, taxSaved) {
       const taxSavingsDiv = document.getElementById('taxSavings');
@@ -149,6 +221,17 @@
         <p>负扣税后应纳税额: $${formatNumber(newTax)}</p>
         <p>预计可省税额: <span class="saved">$${formatNumber(taxSaved)}</span></p>
       `;
+    }
+
+    function formatNumber(num) {
+      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function displayInputSummary(annualIncome) {
+      const summary = `
+        <p>您的年度总收入为 <span class="highlight">$${formatNumber(annualIncome)}</span> 澳元</p>
+      `;
+      document.getElementById('inputSummary').innerHTML = summary;
     }
 
     // ... 其他函数保持不变 ...
