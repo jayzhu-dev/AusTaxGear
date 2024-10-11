@@ -1,5 +1,15 @@
 function calculateTax() {
   const income = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
+  
+  // 检查收入是否为有效数字
+  if (isNaN(income) || income <= 0) {
+      // 如果收入无效，清空结果区域并返回
+      document.getElementById('inputSummary').innerHTML = '';
+      document.getElementById('result').innerHTML = '';
+      document.getElementById('taxSavings').style.display = 'none';
+      return;
+  }
+  
   const frequency = document.querySelector('input[name="frequency"]:checked').value;
   const taxType = document.querySelector('input[name="taxType"]:checked').value;
   const enableSalarySacrifice = document.getElementById('enableSalarySacrifice').checked;
@@ -7,9 +17,9 @@ function calculateTax() {
 
   let annualIncome = income;
   switch (frequency) {
-    case 'monthly': annualIncome *= 12; break;
-    case 'fortnightly': annualIncome *= 26; break;
-    case 'weekly': annualIncome *= 52; break;
+      case 'monthly': annualIncome *= 12; break;
+      case 'fortnightly': annualIncome *= 26; break;
+      case 'weekly': annualIncome *= 52; break;
   }
 
   displayInputSummary(annualIncome);
@@ -20,11 +30,12 @@ function calculateTax() {
 
   displayResult(annualIncome, originalTax, annualIncome - originalTax);
   if (enableSalarySacrifice) {
-    displayTaxSavings(originalTax, newTax, taxSaved);
+      displayTaxSavings(originalTax, newTax, taxSaved);
   } else {
-    document.getElementById('taxSavings').style.display = 'none';
+      document.getElementById('taxSavings').style.display = 'none';
   }
 }
+
 
 function calculateTaxAmount(income) {
   if (income <= 18200) return 0;
