@@ -4,7 +4,7 @@ Project Description: AusTaxGear is a tax calculator designed for Australian resi
 AusTaxGear is a personal tax calculator designed specifically for Australian residents and includes Negative Gearing. Whether you are an investor or an ordinary taxpayer, AusTaxGear will help you accurately calculate your tax liability and understand the tax implications of Negative Gearing.
 
 Functionality Features
-
+ 
 Individual Tax Calculation: Calculate the tax due based on your income and deductions.
 
 Negative Deduction Calculation: Supports the calculation of negative deduction to help you understand the tax implications of investing in property.
