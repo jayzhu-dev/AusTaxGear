@@ -1,81 +1,77 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 10px;
   background-color: #f0f0f0;
 }
 
 h1 {
   color: #333;
   text-align: center;
+  font-size: 1.5em;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.input-section {
-  flex: 1;
-  min-width: 300px;
-}
-
+.input-section,
 .output-section {
-  flex: 2;
-  min-width: 300px;
+  flex: 1 1 300px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input-group {
-  margin-bottom: 20px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #555;
 }
 
-input[type="number"] {
+input[type="text"],
+select,
+button {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .radio-group {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 5px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.radio-pair {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+.radio-group::-webkit-scrollbar {
+  display: none;
 }
 
 .radio-label {
-  flex: 1;
-  padding: 8px;
-  font-size: 14px;
+  flex: 0 0 auto;
+  padding: 6px 10px;
   text-align: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.radio-label:hover {
-  background-color: #e9e9e9;
+  font-size: 0.8em;
+  white-space: nowrap;
 }
 
 input[type="radio"] {
@@ -88,106 +84,35 @@ input[type="radio"]:checked+.radio-label {
 }
 
 button {
-  display: block;
-  width: 100%;
-  padding: 10px;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 18px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1em;
+  margin-top: 10px;
 }
 
-button:hover {
-  background-color: #45a049;
+.input-summary {
+  font-size: 1em;
+  margin-bottom: 10px;
 }
 
-#result {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-th,
-td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
+.input-summary .highlight {
   font-weight: bold;
-  color: #333;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-@media (max-width: 768px) {
-  .radio-label {
-    flex: 1 0 45%;
-  }
-
-  .container {
-    flex-direction: column;
-  }
-
-  .input-section,
-  .output-section {
-    width: 100%;
-  }
-}
-
-.salary-sacrifice {
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #ddd;
-}
-
-.salary-sacrifice label {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.salary-sacrifice-input {
-  display: flex;
-  align-items: center;
-}
-
-.salary-sacrifice-input label {
-  flex: 0 0 auto;
-  margin-right: 10px;
-}
-
-.salary-sacrifice-input input {
-  flex: 1;
+  color: #4CAF50;
 }
 
 .tax-savings {
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: #e8f5e9;
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
 }
 
 .tax-savings h3 {
   margin-top: 0;
   color: #2e7d32;
+  font-size: 1.1em;
 }
 
 .tax-savings .saved {
@@ -195,18 +120,45 @@ tr:nth-child(even) {
   font-weight: bold;
 }
 
-.input-group input[type="text"],
-.input-group button {
+table {
   width: 100%;
-  box-sizing: border-box;
+  border-collapse: collapse;
+  font-size: 0.9em;
 }
 
-.input-summary {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-.input-summary .highlight {
-  font-weight: bold;
-  color: #4CAF50;
+th {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  .input-section,
+  .output-section {
+    padding: 10px;
+  }
+
+  .radio-label {
+    font-size: 0.7em;
+    padding: 4px 8px;
+  }
+
+  .input-summary,
+  .tax-savings,
+  table {
+    font-size: 0.8em;
+  }
 }
