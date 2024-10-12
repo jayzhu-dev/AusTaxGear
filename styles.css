@@ -32,6 +32,7 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
+  position: relative; /* 添加这行 */
 }
 
 .input-section:hover,
@@ -294,16 +295,16 @@ th {
 #result table td {
   border: none;
   padding: 6px 5px; /* 减小垂直内边距以缩短行间距 */
-  text-align: right;
+  text-align: right; /* 所有单元格右对齐 */
 }
 
 /* 调整第一列（薪资周期）的宽度和内边距 */
 #result table th:first-child,
 #result table td:first-child {
   width: 20%; /* 设置第一列的宽度 */
-  text-align: center;
   padding-left: 5px;
   padding-right: 5px;
+  text-align: right; /* 第一列右对齐 */
 }
 
 /* 平均分配右侧三列的宽度和内边距 */
@@ -401,38 +402,35 @@ th {
   margin-left: 2px;
 }
 
-.info-text-cn {
-  font-size: 10px;
+.info-text .zh,
+.info-text .en {
+  font-size: 12px;
   font-weight: 500;
-  color: #999;
+  color: #999; /* 浅灰色，适用于中文和英文 */
 }
 
-.info-text-en {
-  font-size: 8px;
-  font-weight: 500;
-  color: #aaa;
+.zh-mode .info-text .en,
+.en-mode .info-text .zh {
+  display: none;
 }
 
-.dark-mode .info-text-cn {
-  color: #777;
-}
-
-.dark-mode .info-text-en {
-  color: #888;
+.zh-mode .info-text .zh,
+.en-mode .info-text .en {
+  display: inline;
 }
 
 .dark-mode .info-icon {
   fill: #81c784;
 }
 
-.info-icon-container:hover .info-text-cn,
-.info-icon-container:hover .info-text-en {
-  color: #4CAF50;
+.info-icon-container:hover .info-text .zh,
+.info-icon-container:hover .info-text .en {
+  color: #4CAF50; /* 鼠标悬停时变为绿色 */
 }
 
-.dark-mode .info-icon-container:hover .info-text-cn,
-.dark-mode .info-icon-container:hover .info-text-en {
-  color: #81c784;
+.dark-mode .info-icon-container:hover .info-text .zh,
+.dark-mode .info-icon-container:hover .info-text .en {
+  color: #81c784; /* 深色模式下鼠标悬停时的颜色 */
 }
 
 .popup {
@@ -750,7 +748,7 @@ input[type="button"] {
 .en-mode input[type="submit"],
 .en-mode input[type="button"] {
   font-weight: 700;
-  /* 更粗的字体 */
+  /* 粗的字体 */
   letter-spacing: 0.5px;
   /* 增加字母间距 */
 }
@@ -820,7 +818,7 @@ input[type="button"] {
 
 /* 保持其他样式不变 */
 
-/* 添���计算结果标题的样式 */
+/* 添加计算结果标题的样式 */
 #resultTitle {
   margin-top: 0;
   margin-bottom: 15px;
@@ -855,5 +853,80 @@ input[type="button"] {
 @media (max-width: 767px) {
   .radio-group .radio-label {
     font-size: 14px; /* 在手机上稍微减小字体大小 */
+  }
+}
+
+/* 在 .info-icon-container 样式之后添加 */
+.tax-rate-info {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  fill: #4CAF50;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.dark-mode .tax-rate-info {
+  fill: #81c784;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#resultTitle {
+  margin: 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.info-icon-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.info-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  fill: #4CAF50;
+}
+
+.info-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+}
+
+.info-icon-container:hover .info-text {
+  color: #4CAF50;
+}
+
+@media (max-width: 767px) {
+  .result-header {
+    flex-direction: row; /* 改为行布局 */
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center; /* 垂直居中对齐 */
+  }
+
+  #resultTitle {
+    font-size: 1.1em; /* 稍微减小标题字体大小 */
+  }
+
+  .info-icon-container {
+    margin-top: 0; /* 移除顶部边距 */
+  }
+
+  .info-text {
+    font-size: 10px; /* 减小文字大小 */
+  }
+
+  .info-icon {
+    width: 14px; /* 稍微减小图标大小 */
+    height: 14px;
   }
 }

@@ -10,7 +10,11 @@ function toggleLanguage() {
 
 function updateLanguage() {
   document.querySelectorAll('[data-zh]').forEach(el => {
-    el.textContent = el.getAttribute(`data-${currentLang}`);
+    if (el.tagName === 'TD' || el.tagName === 'TH') {
+      el.textContent = el.getAttribute(`data-${currentLang}`);
+    } else {
+      el.innerHTML = el.getAttribute(`data-${currentLang}`);
+    }
   });
 }
 
@@ -31,7 +35,7 @@ function calculateTax() {
     return;
   }
 
-  // 显示"计算结果"标��
+  // 显示"计算结果"标
   document.getElementById('resultTitle').style.display = 'block';
 
   const frequency = document.querySelector('input[name="frequency"]:checked').value;
@@ -100,7 +104,7 @@ function displayInputSummary(annualIncome, negativeGearing) {
 function displayResult(annualIncome, tax, netIncome) {
   const resultDiv = document.getElementById('result');
   const frequencyFactor = {
-    'annually': { label: '每   年<br><span class="en">Annually</span>', factor: 1 },
+    'annually': { label: '每     年<br><span class="en">Annually</span>', factor: 1 },
     'monthly': { label: '每   月<br><span class="en">Monthly</span>', factor: 1 / 12 },
     'fortnightly': { label: '每两周<br><span class="en">Fortnightly</span>', factor: 1 / 26 },
     'weekly': { label: '每 周<br><span class="en">Weekly</span>', factor: 1 / 52 }
@@ -186,7 +190,7 @@ negativeGearingInput.addEventListener('input', function (e) {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  const infoIcon = document.querySelector('.info-icon-container');
+  const infoIcon = document.querySelector('.output-section .info-icon-container');
   const taxRatePopup = document.getElementById('taxRatePopup');
   const negativeGearingInfo = document.querySelector('.negative-gearing-info');
   const negativeGearingPopup = document.getElementById('negativeGearingPopup');

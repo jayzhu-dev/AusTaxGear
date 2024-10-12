@@ -80,7 +80,19 @@
     </div>
 
     <div class="output-section">
-      <h3 id="resultTitle" style="display: none;" data-zh="计算结果" data-en="Calculation Results"></h3>
+      <div class="result-header">
+        <h3 id="resultTitle" style="display: none;" data-zh="计算结果" data-en="Calculation Results"></h3>
+        <div class="info-icon-container">
+          <svg class="info-icon tax-rate-info" viewBox="0 0 24 24" width="16" height="16">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+          </svg>
+          <div class="info-text">
+            <span class="zh">税率说明</span>
+            <span class="en">Tax Rate Info</span>
+          </div>
+        </div>
+      </div>
       <div id="inputSummary" class="input-summary"></div>
       <div id="result"></div>
       <div id="taxSavings" class="tax-savings" style="display: none;"></div>
@@ -100,9 +112,42 @@
       <p data-zh="负扣税是一种投资策略，主要应用于房地产投资。当投资产生的费用（如贷款利息、维护费用等）超过投资收入时，超出的部分可以用来抵扣其他应税收入，从而减少整体税负。"
         data-en="Negative gearing is an investment strategy, primarily used in real estate. It occurs when the costs of owning an investment property (such as loan interest, maintenance fees) exceed the income it generates. The excess can be used to reduce tax on other income, thereby lowering overall tax liability.">
       </p>
-      <p data-zh="例如：如果您的投资房产每年产生$20,000的租金收入，但相关费用（如贷款利息、维护费、折旧等）总计$35,000，那么您可以将这$15,000的差额用于抵扣其他收入的税款。"
+      <p data-zh="例如：如果您的投资房产每年产生$20,000的租金收入, 但相关费用（如贷款利息、维护费、折旧等）总计$35,000, 那么您可以将这$15,000的差额用于抵扣其他收入的税款。"
         data-en="For example: If your investment property generates $20,000 in rental income per year, but the associated costs (such as loan interest, maintenance, depreciation, etc.) total $35,000, you can use this $15,000 difference to offset tax on your other income.">
       </p>
+    </div>
+  </div>
+
+  <div id="taxRatePopup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h4 data-zh="2023-2024 澳大利亚个人所得税税率" data-en="2023-2024 Australian Individual Income Tax Rates"></h4>
+      <table>
+        <tr>
+          <th data-zh="应纳税收入" data-en="Taxable income"></th>
+          <th data-zh="税率" data-en="Tax rate"></th>
+        </tr>
+        <tr>
+          <td data-zh="0 – $18,200" data-en="0 – $18,200"></td>
+          <td data-zh="0%" data-en="0%"></td>
+        </tr>
+        <tr>
+          <td data-zh="$18,201 – $45,000" data-en="$18,201 – $45,000"></td>
+          <td data-zh="超过$18,200部分的19%" data-en="19c for each $1 over $18,200"></td>
+        </tr>
+        <tr>
+          <td data-zh="$45,001 – $120,000" data-en="$45,001 – $120,000"></td>
+          <td data-zh="$5,092加上超过$45,000部分的32.5%" data-en="$5,092 plus 32.5c for each $1 over $45,000"></td>
+        </tr>
+        <tr>
+          <td data-zh="$120,001 – $180,000" data-en="$120,001 – $180,000"></td>
+          <td data-zh="$29,467加上超过$120,000部分的37%" data-en="$29,467 plus 37c for each $1 over $120,000"></td>
+        </tr>
+        <tr>
+          <td data-zh="$180,001 以上" data-en="$180,001 and over"></td>
+          <td data-zh="$51,667加上超过$180,000部分的45%" data-en="$51,667 plus 45c for each $1 over $180,000"></td>
+        </tr>
+      </table>
     </div>
   </div>
 
