@@ -278,35 +278,11 @@ th {
 
 #result table {
   width: 100%;
-  table-layout: fixed; /* 确保列宽平均分配 */
-  border-collapse: collapse;
-  margin-top: 20px;
-  padding: 0 15px; /* 增加左右内边距 */
-}
-
-#result th,
-#result td {
-  padding: 10px;
-  text-align: right;
-  border-bottom: 1px solid #ddd;
-  width: 20%; /* 每列宽度为表格宽度的 20%（因为有 5 列） */
-}
-
-#result .frequency-column {
-  text-align: left;
-}
-
-/* 如果需要在小屏幕上调整样式 */
-@media (max-width: 600px) {
-  #result table {
-    padding: 0 10px; /* 在小屏幕上减少内边距 */
-  }
-
-  #result th,
-  #result td {
-    padding: 8px 5px;
-    font-size: 0.9em;
-  }
+  border-collapse: separate;
+  border-spacing: 0 3px;
+  /* 缩短行距，从 5px 改为 3px */
+  margin-top: -3px;
+  /* 相应调整顶部边距 */
 }
 
 #result table thead th {
@@ -1051,52 +1027,4 @@ input[type="button"] {
 
 #taxSavings .info-icon-container:hover .info-text {
   color: #4CAF50;
-}
-
-.super-option {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-.super-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.super-header label {
-  display: flex;
-  align-items: center;
-}
-
-.super-text {
-  margin-left: 5px;
-}
-
-.super-info {
-  width: 16px;
-  height: 16px;
-  margin-left: 4px;
-  fill: #4CAF50;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.super-header input[type="checkbox"] {
-  margin: 0;
-  vertical-align: middle;
-}
-
-.super-header label span {
-  vertical-align: middle;
-}
-
-#superInput {
-  margin-top: 8px;
-}
-
-#superRate {
-  width: 60px;
-  text-align: right;
 }
