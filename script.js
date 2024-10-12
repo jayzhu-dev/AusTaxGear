@@ -104,35 +104,38 @@ function displayInputSummary(annualIncome, negativeGearing) {
 function displayResult(annualIncome, tax, netIncome) {
   const resultDiv = document.getElementById('result');
   const frequencyFactor = {
-    'annually': { label: '每     年<br><span class="en">Annually</span>', factor: 1 },
-    'monthly': { label: '每   月<br><span class="en">Monthly</span>', factor: 1 / 12 },
+    'annually': { label: '每年<br><span class="en">Annually</span>', factor: 1 },
+    'monthly': { label: '每月<br><span class="en">Monthly</span>', factor: 1 / 12 },
     'fortnightly': { label: '每两周<br><span class="en">Fortnightly</span>', factor: 1 / 26 },
-    'weekly': { label: '每 周<br><span class="en">Weekly</span>', factor: 1 / 52 }
+    'weekly': { label: '每周<br><span class="en">Weekly</span>', factor: 1 / 52 }
   };
 
   let resultHTML = `
     <table>
-      <tr>
-        <th class="center-align" data-zh="薪资周期" data-en="Payment Frequency"></th>
-        <th class="right-align" data-zh="总收入" data-en="Gross Income"></th>
-        <th class="right-align" data-zh="税额" data-en="Tax"></th>
-        <th class="right-align" data-zh="净收入" data-en="Net Income"></th>
-      </tr>
+      <thead>
+        <tr>
+          <th class="frequency-column" data-zh="薪资周期" data-en="Frequency"></th>
+          <th class="amount-column" data-zh="总收入" data-en="Gross income"></th>
+          <th class="amount-column" data-zh="税额" data-en="Income tax"></th>
+          <th class="amount-column" data-zh="净收入" data-en="Net income"></th>
+        </tr>
+      </thead>
+      <tbody>
   `;
 
   for (let freq in frequencyFactor) {
     const { label, factor } = frequencyFactor[freq];
     resultHTML += `
       <tr>
-          <td class="center-align" data-zh="${label.split('<br>')[0]}" data-en="${label.split('<br>')[1].replace('<span class="en">', '').replace('</span>', '')}"></td>
-          <td class="right-align">$${formatNumber(annualIncome * factor)}</td>
-          <td class="right-align">$${formatNumber(tax * factor)}</td>
-          <td class="right-align">$${formatNumber(netIncome * factor)}</td>
+        <td class="frequency-column">${label}</td>
+        <td class="amount-column">$${formatNumber(annualIncome * factor)}</td>
+        <td class="amount-column">$${formatNumber(tax * factor)}</td>
+        <td class="amount-column">$${formatNumber(netIncome * factor)}</td>
       </tr>
-  `;
+    `;
   }
 
-  resultHTML += '</table>';
+  resultHTML += '</tbody></table>';
   resultDiv.innerHTML = resultHTML;
   updateLanguage();
 }
@@ -151,7 +154,7 @@ function displayTaxSavings(originalTax, newTax, taxSaved) {
       $${formatNumber(originalTax)}
     </p>
     <p>
-      <span class="zh">负税后税额: </span>
+      <span class="zh">负扣税后税额: </span>
       <span class="en">Tax Amount After Negative Gearing: </span>
       $${formatNumber(newTax)}
     </p>

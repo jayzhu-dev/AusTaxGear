@@ -277,103 +277,89 @@ th {
 }
 
 #result table {
-  border-collapse: separate;
-  border-spacing: 0;
   width: 100%;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px;
-  padding-right: 20px;
-  /* 保持整个表格的右侧内边距 */
+  border-collapse: separate;
+  border-spacing: 0 3px; /* 缩短行距，从 5px 改为 3px */
+  margin-top: -3px; /* 相应调整顶部边距 */
 }
 
-#result table:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-#result table th,
-#result table td {
-  border: none;
-  padding: 6px 5px;
-  /* 减小垂直内边距以缩短行间距 */
+#result table thead th {
+  background-color: #e8f5e9; /* 浅灰绿色背景 */
+  color: #333;
+  font-weight: normal;
+  padding: 8px 10px; /* 缩短上下内边距 */
   text-align: right;
-  /* 所有单元格右对齐 */
+  border: none;
 }
 
-/* 调整第一列（薪资周期）的宽度和内边距 */
-#result table th:first-child,
-#result table td:first-child {
-  width: 20%;
-  /* 设置第一列的宽度 */
-  padding-left: 5px;
-  padding-right: 5px;
+#result table thead th:first-child {
+  text-align: left;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 15px; /* 增加第一列左侧内边距 */
+}
+
+#result table thead th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 15px; /* 增加第四列右侧内边距 */
+}
+
+#result table tbody tr {
+  background-color: #f1f8e9; /* 浅灰绿色背景 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+}
+
+#result table tbody tr:hover {
+  transform: translateY(-3px); /* 添加浮动效果 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+#result table tbody td {
+  padding: 8px 10px; /* 缩短上下内边距 */
   text-align: right;
-  /* 第一列右对齐 */
+  border: none;
 }
 
-/* 平均分配右侧三列的宽度和内边距 */
-#result table th:not(:first-child),
-#result table td:not(:first-child) {
-  width: 26.67%;
-  /* (100% - 20%) / 3 */
-  padding-left: 10px;
-  padding-right: 10px;
+#result table tbody td:first-child {
+  text-align: left;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 15px; /* 增加第一列左侧内边距 */
 }
 
-/* 增加最后一列的右侧内边距 */
-#result table th:last-child,
-#result table td:last-child {
-  padding-right: 20px;
-  /* 增加最后一列的右侧内边距 */
+#result table tbody td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 15px; /* 增加第四列右侧内边距 */
 }
 
-#result table tr {
-  border-bottom: 1px solid #e0e0e0;
-  /* 保持淡色横线 */
-}
-
-#result table tr:last-child {
-  border-bottom: none;
-}
-
-#result table th {
-  border-bottom: 2px solid #d0d0d0;
-  /* 保持表头底部边框稍粗一些 */
+.frequency-column {
+  width: 25%;
   font-weight: bold;
 }
 
-/* 针对手机显示界面的媒体查询 */
+.amount-column {
+  width: 25%;
+}
+
 @media (max-width: 767px) {
   #result table {
-    font-size: 13px;
-    padding-right: 10px;
-    /* 在手机上减少整个表格的右侧内边距 */
+    font-size: 14px;
   }
 
-  #result table th,
-  #result table td {
-    padding: 4px 2px;
-    /* 在手机上进一步减小内边距 */
+  #result table thead th,
+  #result table tbody td {
+    padding: 8px 5px;
   }
 
-  #result table th:first-child,
-  #result table td:first-child {
-    padding-left: 2px;
-    padding-right: 2px;
+  .frequency-column {
+    width: 30%;
   }
 
-  #result table th:not(:first-child),
-  #result table td:not(:first-child) {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  #result table th:last-child,
-  #result table td:last-child {
-    padding-right: 10px;
-    /* 在手机上减少最后一列的右侧内边距 */
+  .amount-column {
+    width: 23.33%;
   }
 }
 
