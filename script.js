@@ -104,10 +104,10 @@ function displayInputSummary(annualIncome, negativeGearing) {
 function displayResult(annualIncome, tax, netIncome) {
   const resultDiv = document.getElementById('result');
   const frequencyFactor = {
-    'annually': { label: '每年<br><span class="en">Annually</span>', factor: 1 },
-    'monthly': { label: '每月<br><span class="en">Monthly</span>', factor: 1 / 12 },
-    'fortnightly': { label: '每两周<br><span class="en">Fortnightly</span>', factor: 1 / 26 },
-    'weekly': { label: '每周<br><span class="en">Weekly</span>', factor: 1 / 52 }
+    'annually': { zh: '每年', en: 'Annually', factor: 1 },
+    'monthly': { zh: '每月', en: 'Monthly', factor: 1 / 12 },
+    'fortnightly': { zh: '每两周', en: 'Fortnightly', factor: 1 / 26 },
+    'weekly': { zh: '每周', en: 'Weekly', factor: 1 / 52 }
   };
 
   let resultHTML = `
@@ -124,10 +124,13 @@ function displayResult(annualIncome, tax, netIncome) {
   `;
 
   for (let freq in frequencyFactor) {
-    const { label, factor } = frequencyFactor[freq];
+    const { zh, en, factor } = frequencyFactor[freq];
     resultHTML += `
       <tr>
-        <td class="frequency-column">${label}</td>
+        <td class="frequency-column">
+          <span class="zh">${zh}</span>
+          <span class="en">${en}</span>
+        </td>
         <td class="amount-column">$${formatNumber(annualIncome * factor)}</td>
         <td class="amount-column">$${formatNumber(tax * factor)}</td>
         <td class="amount-column">$${formatNumber(netIncome * factor)}</td>
