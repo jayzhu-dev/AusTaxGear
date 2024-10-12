@@ -1,6 +1,5 @@
-
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Afacad Flux", "Noto Sans SC", sans-serif, Arial, sans-serif;
   margin: 0;
   padding: 10px;
   background-color: #f0f0f0;
@@ -445,7 +444,8 @@ th {
 .negative-gearing-info {
   width: 16px;
   height: 16px;
-  margin-left: 4px; /* 缩短与文字的间距 */
+  margin-left: 4px;
+  /* 缩短与文字的间距 */
   fill: #4CAF50;
   cursor: pointer;
   flex-shrink: 0;
@@ -614,11 +614,13 @@ th {
   display: inline;
 }
 
-.zh-mode .en, .en-mode .zh {
+.zh-mode .en,
+.en-mode .zh {
   display: none;
 }
 
-.zh-mode .zh, .en-mode .en {
+.zh-mode .zh,
+.en-mode .en {
   display: inline;
 }
 
@@ -643,8 +645,8 @@ th {
 }
 
 /* 通用按钮样式 */
-button, 
-input[type="submit"], 
+button,
+input[type="submit"],
 input[type="button"] {
   font-weight: bold;
 }
@@ -653,8 +655,10 @@ input[type="button"] {
 .en-mode button,
 .en-mode input[type="submit"],
 .en-mode input[type="button"] {
-  font-weight: 700; /* 更粗的字体 */
-  letter-spacing: 0.5px; /* 增加字母间距 */
+  font-weight: 700;
+  /* 更粗的字体 */
+  letter-spacing: 0.5px;
+  /* 增加字母间距 */
 }
 
 /* 特定按钮样式（如果需要） */
@@ -673,5 +677,6 @@ input[type="button"] {
 .en-mode button .en,
 .en-mode input[type="submit"] .en,
 .en-mode input[type="button"] .en {
-  font-size: 0.95em; /* 稍微增大字体大小 */
+  font-size: 0.95em;
+  /* 稍微增大字体大小 */
 }
