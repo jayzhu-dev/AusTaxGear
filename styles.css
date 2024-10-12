@@ -1,9 +1,13 @@
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 10px;
   background-color: #f0f0f0;
   font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -15,17 +19,17 @@ h1 {
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* 增加了间隔 */
+  gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 10px; /* 从 20px 减少到 10px */
+  padding: 0 10px;
 }
 
 .input-section,
 .output-section {
   flex: 1 1 300px;
   background-color: white;
-  padding: 20px; /* 增加了内边距 */
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
@@ -258,7 +262,7 @@ th {
   }
 
   .container {
-    padding: 0 5px; /* 从 10px 减少到 5px */
+    padding: 0 5px;
   }
 }
 
@@ -312,42 +316,34 @@ th {
   font-size: 10px;
   font-weight: 500;
   color: #999;
-  /* 更淡的灰色 */
 }
 
 .info-text-en {
   font-size: 8px;
   font-weight: 500;
   color: #aaa;
-  /* 比中文更淡一些的灰色 */
 }
 
-/* 深色模式样式 */
 .dark-mode .info-text-cn {
   color: #777;
-  /* 深色模式下的灰色 */
 }
 
 .dark-mode .info-text-en {
   color: #888;
-  /* 深色模式下稍亮一些的灰色 */
 }
 
 .dark-mode .info-icon {
   fill: #81c784;
 }
 
-/* 鼠标悬停效果 */
 .info-icon-container:hover .info-text-cn,
 .info-icon-container:hover .info-text-en {
   color: #4CAF50;
-  /* 悬停时变为主题色 */
 }
 
 .dark-mode .info-icon-container:hover .info-text-cn,
 .dark-mode .info-icon-container:hover .info-text-en {
   color: #81c784;
-  /* 深色模式下悬停时的颜色 */
 }
 
 .popup {
@@ -388,7 +384,6 @@ th {
   cursor: pointer;
 }
 
-/* 深色模式样式 */
 .dark-mode .popup-content {
   background-color: #333;
   color: #f0f0f0;
@@ -403,7 +398,6 @@ th {
   color: #fff;
 }
 
-/* 在现有的样式中添加或修改以下内容 */
 .popup-content {
   max-height: 80vh;
   overflow-y: auto;
@@ -423,7 +417,6 @@ th {
   color: #666;
 }
 
-/* 深色模式样式 */
 .dark-mode .popup-content .en {
   color: #ccc;
 }
@@ -443,23 +436,30 @@ th {
 .negative-gearing-header label {
   display: flex;
   align-items: center;
-  margin-right: 5px;
+}
+
+.negative-gearing-text {
+  margin-left: 5px;
 }
 
 .negative-gearing-info {
   width: 16px;
   height: 16px;
-  margin-left: 5px;
+  margin-left: 4px; /* 缩短与文字的间距 */
   fill: #4CAF50;
   cursor: pointer;
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
-  transition: all 0.3s ease;
 }
 
-.negative-gearing-info:hover {
-  transform: translateY(-1px);
-  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.2));
+/* 确保复选框和文字垂直对齐 */
+.negative-gearing-header input[type="checkbox"] {
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* 调整文字的垂直对齐 */
+.negative-gearing-header label span {
+  vertical-align: middle;
 }
 
 .negative-gearing input[type="checkbox"] {
@@ -469,7 +469,6 @@ th {
 .negative-gearing-input {
   margin-top: 8px;
   padding-left: 24px;
-  /* 添加左侧缩进，与复选框对齐 */
 }
 
 .negative-gearing-input label {
@@ -479,12 +478,8 @@ th {
 
 .negative-gearing-input input[type="text"] {
   width: calc(100% - 24px);
-  /* 减去左侧缩进的宽度 */
 }
 
-/* 其他样式保持不变 */
-
-/* 弹窗样式 */
 .popup {
   display: none;
   position: fixed;
@@ -544,7 +539,6 @@ th {
   font-style: italic;
 }
 
-/* 深色模式样式 */
 .dark-mode .calculator-credit {
   color: #aaa;
 }
@@ -569,11 +563,115 @@ th {
   text-decoration: underline;
 }
 
-/* 深色模式样式 */
 .dark-mode .tax-rate-note {
   color: #aaa;
 }
 
 .dark-mode .tax-rate-note a {
   color: #81c784;
+}
+
+.language-switch {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#langToggle {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#langToggle:hover {
+  background-color: #45a049;
+}
+
+.en-mode .zh {
+  display: none;
+}
+
+.en-mode .en {
+  display: inline;
+  font-size: inherit;
+  color: inherit;
+  margin-top: 0;
+}
+
+.zh-mode .en {
+  display: none;
+}
+
+.summary-item {
+  margin-bottom: 10px;
+}
+
+.summary-text {
+  display: inline;
+}
+
+.zh-mode .en, .en-mode .zh {
+  display: none;
+}
+
+.zh-mode .zh, .en-mode .en {
+  display: inline;
+}
+
+.tax-rate-note {
+  margin-top: 15px;
+  font-size: 0.8em;
+  color: #666;
+  text-align: right;
+}
+
+.tax-rate-note p {
+  margin: 5px 0;
+}
+
+.tax-rate-note a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.tax-rate-note a:hover {
+  text-decoration: underline;
+}
+
+/* 通用按钮样式 */
+button, 
+input[type="submit"], 
+input[type="button"] {
+  font-weight: bold;
+}
+
+/* 英文模式下的按钮样式 */
+.en-mode button,
+.en-mode input[type="submit"],
+.en-mode input[type="button"] {
+  font-weight: 700; /* 更粗的字体 */
+  letter-spacing: 0.5px; /* 增加字母间距 */
+}
+
+/* 特定按钮样式（如果需要） */
+.en-mode #calculateButton,
+.en-mode #langToggle {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* 确保英文模式下radio按钮的标签也使用粗体 */
+.en-mode .radio-label {
+  font-weight: 600;
+}
+
+/* 调整英文模式下按钮内文字的大小（如果需要） */
+.en-mode button .en,
+.en-mode input[type="submit"] .en,
+.en-mode input[type="button"] .en {
+  font-size: 0.95em; /* 稍微增大字体大小 */
 }

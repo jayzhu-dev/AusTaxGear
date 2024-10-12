@@ -1,9 +1,29 @@
+let currentLang = 'zh';
+
+function toggleLanguage() {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  document.body.classList.toggle('en-mode', currentLang === 'en');
+  document.body.classList.toggle('zh-mode', currentLang === 'zh');
+  document.getElementById('langToggle').textContent = currentLang === 'zh' ? 'EN' : '中文';
+  updateLanguage();
+}
+
+function updateLanguage() {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${currentLang}`);
+  });
+}
+
+document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+
+// 初始化语言
+document.body.classList.add('zh-mode');
+updateLanguage();
+
 function calculateTax() {
   const income = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
 
-  // 检查收入是否为有效数字
   if (isNaN(income) || income <= 0) {
-    // 如果收入无效，清空结果区域并返回
     document.getElementById('inputSummary').innerHTML = '';
     document.getElementById('result').innerHTML = '';
     document.getElementById('taxSavings').style.display = 'none';
@@ -36,7 +56,6 @@ function calculateTax() {
   }
 }
 
-
 function calculateTaxAmount(income) {
   if (income <= 18200) return 0;
   if (income <= 45000) return (income - 18200) * 0.19;
@@ -46,19 +65,30 @@ function calculateTaxAmount(income) {
 }
 
 function displayInputSummary(annualIncome, negativeGearing) {
-  let summary = `
-<p>您的年度总收入为 <span class="highlight">$${formatNumber(annualIncome)}</span> 澳元<br>
-<span class="en">Your annual gross income is <span class="highlight">$${formatNumber(annualIncome)}</span> AUD</span></p>
-`;
+  const inputSummaryDiv = document.getElementById('inputSummary');
+  inputSummaryDiv.innerHTML = `
+    <p class="summary-item">
+      <span class="zh">您的年度总收入为 </span>
+      <span class="en">Annual gross income </span>
+      <span class="highlight">$${formatNumber(annualIncome)}</span>
+      <span class="zh"> 澳元</span>
+      <span class="en"> AUD</span>
+    </p>
+  `;
 
-  if (enableNegativeGearing.checked && negativeGearing > 0) {
-    summary += `
-  <p>您选择的负扣税金额为 <span class="highlight">$${formatNumber(negativeGearing)}</span> 澳元<br>
-  <span class="en">Your selected negative gearing amount is <span class="highlight">$${formatNumber(negativeGearing)}</span> AUD</span></p>
-`;
+  if (document.getElementById('enableNegativeGearing').checked && negativeGearing > 0) {
+    inputSummaryDiv.innerHTML += `
+      <p class="summary-item">
+        <span class="zh">您选择的负扣税金额为 </span>
+        <span class="en">Selected negative gearing amount </span>
+        <span class="highlight">$${formatNumber(negativeGearing)}</span>
+        <span class="zh"> 澳元</span>
+        <span class="en"> AUD</span>
+      </p>
+    `;
   }
 
-  document.getElementById('inputSummary').innerHTML = summary;
+  updateLanguage();
 }
 
 function displayResult(annualIncome, tax, netIncome) {
@@ -71,21 +101,21 @@ function displayResult(annualIncome, tax, netIncome) {
   };
 
   let resultHTML = `
-  <h3>计算结果<br><span class="en">Calculation Results</span></h3>
-  <table>
-      <tr>
-          <th class="center-align">薪资周期<br><span class="en">Payment Frequency</span></th>
-          <th class="right-align">总收入<br><span class="en">Gross Income</span></th>
-          <th class="right-align">税额<br><span class="en">Tax</span></th>
-          <th class="right-align">净收入<br><span class="en">Net Income</span></th>
-      </tr>
-`;
+    <h3 data-zh="计算结果" data-en="Calculation Results"></h3>
+    <table>
+        <tr>
+            <th class="center-align" data-zh="薪资周期" data-en="Payment Frequency"></th>
+            <th class="right-align" data-zh="总收入" data-en="Gross Income"></th>
+            <th class="right-align" data-zh="税额" data-en="Tax"></th>
+            <th class="right-align" data-zh="净收入" data-en="Net Income"></th>
+          </tr>
+  `;
 
   for (let freq in frequencyFactor) {
     const { label, factor } = frequencyFactor[freq];
     resultHTML += `
       <tr>
-          <td class="center-align">${label}</td>
+          <td class="center-align" data-zh="${label.split('<br>')[0]}" data-en="${label.split('<br>')[1].replace('<span class="en">', '').replace('</span>', '')}"></td>
           <td class="right-align">$${formatNumber(annualIncome * factor, 2)}</td>
           <td class="right-align">$${formatNumber(tax * factor, 2)}</td>
           <td class="right-align">$${formatNumber(netIncome * factor, 2)}</td>
@@ -95,20 +125,34 @@ function displayResult(annualIncome, tax, netIncome) {
 
   resultHTML += '</table>';
   resultDiv.innerHTML = resultHTML;
+  updateLanguage();
 }
 
 function displayTaxSavings(originalTax, newTax, taxSaved) {
   const taxSavingsDiv = document.getElementById('taxSavings');
   taxSavingsDiv.style.display = 'block';
   taxSavingsDiv.innerHTML = `
-  <h3>负扣税影响 (澳元/年)<br><span class="en">Impact of Negative Gearing (AUD/Year)</span></h3>
-  <p>原始应纳税额: $${formatNumber(originalTax)}<br>
-  <span class="en">Original Taxable Amount: $${formatNumber(originalTax)}</span></p>
-  <p>负税后应纳税额: $${formatNumber(newTax)}<br>
-  <span class="en">Taxable Amount After Negative Gearing: $${formatNumber(newTax)}</span></p>
-  <p>预计可省税额: <span class="saved">$${formatNumber(taxSaved)}</span><br>
-  <span class="en">Estimated Tax Savings: <span class="saved">$${formatNumber(taxSaved)}</span></span></p>
-`;
+    <h3>
+      <span class="zh">负扣税影响 (澳元/年)</span>
+      <span class="en">Impact of Negative Gearing (AUD/Year)</span>
+    </h3>
+    <p>
+      <span class="zh">原始应纳税额: </span>
+      <span class="en">Original Taxable Amount: </span>
+      $${formatNumber(originalTax)}
+    </p>
+    <p>
+      <span class="zh">负税后应纳税额: </span>
+      <span class="en">Taxable Amount After Negative Gearing: </span>
+      $${formatNumber(newTax)}
+    </p>
+    <p>
+      <span class="zh">预计可省税额: </span>
+      <span class="en">Estimated Tax Savings: </span>
+      <span class="saved">$${formatNumber(taxSaved)}</span>
+    </p>
+  `;
+  updateLanguage();
 }
 
 function formatNumber(num) {

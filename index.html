@@ -9,39 +9,42 @@
 </head>
 
 <body>
-  <h1>澳大利亚个税计算器<br><span class="en">Australian Tax Calculator</span></h1>
+  <div class="language-switch">
+    <button id="langToggle">EN</button>
+  </div>
+  <h1 data-zh="澳大利亚个税计算器" data-en="Australian Tax Calculator"></h1>
   <div class="container">
     <div class="input-section">
       <div class="input-group">
-        <label for="income">收入 (澳元)<br><span class="en">Income (AUD)</span></label>
+        <label for="income" data-zh="收入 (澳元)" data-en="Income (AUD)"></label>
         <input type="text" id="income" required>
       </div>
 
       <div class="input-group">
-        <label>薪资周期<br><span class="en">Payment Frequency</span></label>
+        <label data-zh="薪资周期" data-en="Payment Frequency"></label>
         <div class="radio-group">
           <input type="radio" id="annually" name="frequency" value="annually" checked>
-          <label for="annually" class="radio-label">每年<br><span class="en">Annually</span></label>
+          <label for="annually" class="radio-label" data-zh="每年" data-en="Annually"></label>
 
           <input type="radio" id="monthly" name="frequency" value="monthly">
-          <label for="monthly" class="radio-label">每月<br><span class="en">Monthly</span></label>
+          <label for="monthly" class="radio-label" data-zh="每月" data-en="Monthly"></label>
 
           <input type="radio" id="fortnightly" name="frequency" value="fortnightly">
-          <label for="fortnightly" class="radio-label">每两周<br><span class="en">Fortnightly</span></label>
+          <label for="fortnightly" class="radio-label" data-zh="每两周" data-en="Fortnightly"></label>
 
           <input type="radio" id="weekly" name="frequency" value="weekly">
-          <label for="weekly" class="radio-label">每周<br><span class="en">Weekly</span></label>
+          <label for="weekly" class="radio-label" data-zh="每周" data-en="Weekly"></label>
         </div>
       </div>
 
       <div class="input-group">
-        <label>税收类型<br><span class="en">Tax Type</span></label>
+        <label data-zh="税收类型" data-en="Income Tax Type"></label>
         <div class="radio-group">
           <input type="radio" id="gross" name="taxType" value="gross" checked>
-          <label for="gross" class="radio-label">总收入<br><span class="en">Gross</span></label>
+          <label for="gross" class="radio-label" data-zh="总收入" data-en="Gross"></label>
 
           <input type="radio" id="net" name="taxType" value="net">
-          <label for="net" class="radio-label">净收入<br><span class="en">Net</span></label>
+          <label for="net" class="radio-label" data-zh="净收入" data-en="Net"></label>
         </div>
       </div>
 
@@ -49,7 +52,10 @@
         <div class="negative-gearing-header">
           <label>
             <input type="checkbox" id="enableNegativeGearing">
-            <span>启用负扣税<br><span class="en">Enable Negative Gearing</span></span>
+            <span class="negative-gearing-text">
+              <span class="zh">启用负扣税</span>
+              <span class="en">Enable Negative Gearing</span>
+            </span>
           </label>
           <svg class="info-icon negative-gearing-info" viewBox="0 0 24 24" width="16" height="16">
             <path
@@ -57,12 +63,12 @@
           </svg>
         </div>
         <div id="negativeGearingInput" class="negative-gearing-input" style="display: none;">
-          <label for="negativeGearing">负扣税金额 (澳元)<br><span class="en">Negative Gearing Amount (AUD)</span></label>
+          <label for="negativeGearing" data-zh="负扣税金额 (澳元)" data-en="Negative Gearing Amount (AUD)"></label>
           <input type="text" id="negativeGearing">
         </div>
       </div>
 
-      <button onclick="calculateTax()">计算<br><span class="en">Calculate</span></button>
+      <button onclick="calculateTax()" data-zh="计算" data-en="Calculate"></button>
     </div>
 
     <div class="output-section">
@@ -71,18 +77,26 @@
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
         </svg>
         <span class="info-text">
-          <span class="info-text-cn">税率说明</span>
-          <span class="info-text-en">Information</span>
+          <span class="info-text-cn" data-zh="税率说明" data-en="Tax Rate Information"></span>
         </span>
       </div>
       <div id="taxRatePopup" class="popup">
         <div class="popup-content">
           <span class="close">&times;</span>
-          <h3>税率说明<br><span class="en">Tax Rate Information</span></h3>
+          <h3>
+            <span class="zh">税率说明</span>
+            <span class="en">Tax Rate Information</span>
+          </h3>
           <table class="tax-rate-table">
             <tr>
-              <th>应纳税所得额<br><span class="en">Taxable Income</span></th>
-              <th>税率<br><span class="en">Tax Rate</span></th>
+              <th>
+                <span class="zh">应纳税所得额</span>
+                <span class="en">Taxable Income</span>
+              </th>
+              <th>
+                <span class="zh">税率</span>
+                <span class="en">Tax Rate</span>
+              </th>
             </tr>
             <tr>
               <td>$0 - $18,200</td>
@@ -106,9 +120,15 @@
             </tr>
           </table>
           <div class="tax-rate-note">
-            <p>自 2024 年 7 月 1 日起执行<br>
-            <span class="en">Effective from July 1, 2024</span></p>
-            <p>数据来源 / Data source: <a href="https://taxcuts.gov.au" target="_blank">https://taxcuts.gov.au</a></p>
+            <p>
+              <span class="zh">自 2024 年 7 月 1 日起执行</span>
+              <span class="en">Effective from July 1, 2024</span>
+            </p>
+            <p>
+              <span class="zh">数据来源：</span>
+              <span class="en">Data source: </span>
+              <a href="https://www.ato.gov.au/rates/individual-income-tax-rates/" target="_blank">ato.gov.au</a>
+            </p>
           </div>
         </div>
       </div>
@@ -118,38 +138,21 @@
     </div>
   </div>
 
-  <div class="disclaimer">
-    Please note that the results generated by this calculator are for informational purposes only and do not constitute
-    an offer or prequalification for the product. Individual institutions may utilize different formulas, and the
-    information presented, including quoted interest rates and default numbers used in the assumptions, is subject to
-    change.
+  <div class="disclaimer" data-zh="请注意，本计算器生成的结果仅供参考，不构成产品的要约或预审。各机构可能使用不同的公式，所呈现的信息（包括所引用的利率和假设中使用的默认数字）可能会发生变化。"
+    data-en="Please note that the results generated by this calculator are for informational purposes only and do not constitute an offer or prequalification for the product. Individual institutions may utilize different formulas, and the information presented, including quoted interest rates and default numbers used in the assumptions, is subject to change.">
   </div>
-  <div class="calculator-credit">
-    Calculator by MiralceWorks
-  </div>
+  <div class="calculator-credit" data-zh="计算器由 MiralceWorks 提供" data-en="Calculator by MiralceWorks"></div>
 
   <!-- 负扣税说明弹窗 -->
   <div id="negativeGearingPopup" class="popup" style="display: none;">
     <div class="popup-content">
       <span class="close">&times;</span>
-      <h4>负扣税说明<br><span class="en">Negative Gearing Explanation</span></h4>
-      <p>
-        负扣税是一种投资策略，主要应用于房地产投资。当投资产生的费用（如贷款利息、维护费用等）超过投资收入时，超出的部分可以用来抵扣其他应税收入，从而减少整体税负。
-        <br><br>
-        <span class="en">
-          Negative gearing is an investment strategy, primarily used in real estate. It occurs when the costs of owning
-          an investment property (such as loan interest, maintenance fees) exceed the income it generates. The excess
-          can be used to reduce tax on other income, thereby lowering overall tax liability.
-        </span>
+      <h4 data-zh="负扣税说明" data-en="Negative Gearing Explanation"></h4>
+      <p data-zh="负扣税是一种投资策略，主要应用于房地产投资。当投资产生的费用（如贷款利息、维护费用等）超过投资收入时，超出的部分可以用来抵扣其他应税收入，从而减少整体税负。"
+        data-en="Negative gearing is an investment strategy, primarily used in real estate. It occurs when the costs of owning an investment property (such as loan interest, maintenance fees) exceed the income it generates. The excess can be used to reduce tax on other income, thereby lowering overall tax liability.">
       </p>
-      <p>
-        例如：如果您的投资房产每年产生$20,000的租金收入，但相关费用（如贷款利息、维护费、折旧等）总计$35,000，那么您可以将这$15,000的差额用于抵扣其他收入的税款。
-        <br><br>
-        <span class="en">
-          For example: If your investment property generates $20,000 in rental income per year, but the associated costs
-          (such as loan interest, maintenance, depreciation, etc.) total $35,000, you can use this $15,000 difference to
-          offset tax on your other income.
-        </span>
+      <p data-zh="例如：如果您的投资房产每年产生$20,000的租金收入，但相关费用（如贷款利息、维护费、折旧等）总计$35,000，那么您可以将这$15,000的差额用于抵扣其他收入的税款。"
+        data-en="For example: If your investment property generates $20,000 in rental income per year, but the associated costs (such as loan interest, maintenance, depreciation, etc.) total $35,000, you can use this $15,000 difference to offset tax on your other income.">
       </p>
     </div>
   </div>
