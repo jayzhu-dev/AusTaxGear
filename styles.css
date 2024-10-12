@@ -15,18 +15,25 @@ h1 {
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px; /* 增加了间隔 */
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 10px; /* 从 20px 减少到 10px */
 }
 
 .input-section,
 .output-section {
   flex: 1 1 300px;
   background-color: white;
-  padding: 15px;
+  padding: 20px; /* 增加了内边距 */
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.input-section:hover,
+.output-section:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
 }
 
 .input-group {
@@ -43,10 +50,19 @@ input[type="text"],
 select,
 button {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 6px;
   box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
 .radio-group {
@@ -58,7 +74,7 @@ button {
 
 .radio-label {
   flex: 1 1 0;
-  padding: 8px 4px;
+  padding: 10px 6px;
   text-align: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -69,13 +85,13 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .radio-label:hover {
   background-color: #e9e9e9;
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 input[type="radio"] {
@@ -102,12 +118,13 @@ button {
   font-size: 1em;
   margin-top: 10px;
   transition: all 0.3s ease;
-  padding: 10px;
+  padding: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 button .en {
@@ -190,7 +207,7 @@ th {
 
   .input-section,
   .output-section {
-    padding: 10px;
+    padding: 15px;
   }
 
   .radio-group {
@@ -239,6 +256,10 @@ th {
   .en {
     font-size: 0.7em;
   }
+
+  .container {
+    padding: 0 5px; /* 从 10px 减少到 5px */
+  }
 }
 
 .center-align {
@@ -254,11 +275,276 @@ th {
   table-layout: fixed;
 }
 
-#result th, #result td {
+#result th,
+#result td {
   padding: 8px;
   border: 1px solid #ddd;
 }
 
 #result th {
   background-color: #f2f2f2;
+}
+
+.info-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+  fill: #4CAF50;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+  margin-left: 2px;
+}
+
+.info-text-cn {
+  font-size: 10px;
+  font-weight: 500;
+  color: #999;
+  /* 更淡的灰色 */
+}
+
+.info-text-en {
+  font-size: 8px;
+  font-weight: 500;
+  color: #aaa;
+  /* 比中文更淡一些的灰色 */
+}
+
+/* 深色模式样式 */
+.dark-mode .info-text-cn {
+  color: #777;
+  /* 深色模式下的灰色 */
+}
+
+.dark-mode .info-text-en {
+  color: #888;
+  /* 深色模式下稍亮一些的灰色 */
+}
+
+.dark-mode .info-icon {
+  fill: #81c784;
+}
+
+/* 鼠标悬停效果 */
+.info-icon-container:hover .info-text-cn,
+.info-icon-container:hover .info-text-en {
+  color: #4CAF50;
+  /* 悬停时变为主题色 */
+}
+
+.dark-mode .info-icon-container:hover .info-text-cn,
+.dark-mode .info-icon-container:hover .info-text-en {
+  color: #81c784;
+  /* 深色模式下悬停时的颜色 */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 深色模式样式 */
+.dark-mode .popup-content {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+.dark-mode .close {
+  color: #f0f0f0;
+}
+
+.dark-mode .close:hover,
+.dark-mode .close:focus {
+  color: #fff;
+}
+
+/* 在现有的样式中添加或修改以下内容 */
+.popup-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.popup-content h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  margin-bottom: 15px;
+}
+
+.popup-content .en {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* 深色模式样式 */
+.dark-mode .popup-content .en {
+  color: #ccc;
+}
+
+.negative-gearing {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.negative-gearing-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.negative-gearing-header label {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.negative-gearing-info {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  fill: #4CAF50;
+  cursor: pointer;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+.negative-gearing-info:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.2));
+}
+
+.negative-gearing input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.negative-gearing-input {
+  margin-top: 8px;
+  padding-left: 24px;
+  /* 添加左侧缩进，与复选框对齐 */
+}
+
+.negative-gearing-input label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.negative-gearing-input input[type="text"] {
+  width: calc(100% - 24px);
+  /* 减去左侧缩进的宽度 */
+}
+
+/* 其他样式保持不变 */
+
+/* 弹窗样式 */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dark-mode .popup-content {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+.dark-mode .close {
+  color: #f0f0f0;
+}
+
+.dark-mode .close:hover,
+.dark-mode .close:focus {
+  color: #fff;
+}
+
+.calculator-credit {
+  font-size: 0.8em;
+  color: #666;
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* 深色模式样式 */
+.dark-mode .calculator-credit {
+  color: #aaa;
 }

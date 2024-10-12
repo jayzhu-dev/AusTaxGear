@@ -45,13 +45,20 @@
         </div>
       </div>
 
-      <div class="salary-sacrifice">
-        <label>
-          <input type="checkbox" id="enableSalarySacrifice"> 启用负扣税<br><span class="en">Apply Negative Gearing</span>
-        </label>
-        <div id="salarySacrificeInput" class="salary-sacrifice-input" style="display: none;">
-          <label for="salarySacrifice">负扣税金额 (澳元)<br><span class="en">Negative Gearing Amount (AUD)</span></label>
-          <input type="text" id="salarySacrifice">
+      <div class="negative-gearing">
+        <div class="negative-gearing-header">
+          <label>
+            <input type="checkbox" id="enableNegativeGearing">
+            <span>启用负扣税<br><span class="en">Enable Negative Gearing</span></span>
+          </label>
+          <svg class="info-icon negative-gearing-info" viewBox="0 0 24 24" width="16" height="16">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+          </svg>
+        </div>
+        <div id="negativeGearingInput" class="negative-gearing-input" style="display: none;">
+          <label for="negativeGearing">负扣税金额 (澳元)<br><span class="en">Negative Gearing Amount (AUD)</span></label>
+          <input type="text" id="negativeGearing">
         </div>
       </div>
 
@@ -59,6 +66,47 @@
     </div>
 
     <div class="output-section">
+      <div class="info-icon-container">
+        <svg class="info-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+        </svg>
+        <span class="info-text">
+          <span class="info-text-cn">税率说明</span>
+          <span class="info-text-en">Information</span>
+        </span>
+      </div>
+      <div id="taxRatePopup" class="popup">
+        <div class="popup-content">
+          <span class="close">&times;</span>
+          <h3>税率说明<br><span class="en">Tax Rate Information</span></h3>
+          <table class="tax-rate-table">
+            <tr>
+              <th>应纳税所得额<br><span class="en">Taxable Income</span></th>
+              <th>税率<br><span class="en">Tax Rate</span></th>
+            </tr>
+            <tr>
+              <td>$0 - $18,200</td>
+              <td>0%</td>
+            </tr>
+            <tr>
+              <td>$18,201 - $45,000</td>
+              <td>19%</td>
+            </tr>
+            <tr>
+              <td>$45,001 - $120,000</td>
+              <td>32.5%</td>
+            </tr>
+            <tr>
+              <td>$120,001 - $180,000</td>
+              <td>37%</td>
+            </tr>
+            <tr>
+              <td>$180,001+</td>
+              <td>45%</td>
+            </tr>
+          </table>
+        </div>
+      </div>
       <div id="inputSummary" class="input-summary"></div>
       <div id="result"></div>
       <div id="taxSavings" class="tax-savings" style="display: none;"></div>
@@ -70,6 +118,35 @@
     an offer or prequalification for the product. Individual institutions may utilize different formulas, and the
     information presented, including quoted interest rates and default numbers used in the assumptions, is subject to
     change.
+  </div>
+  <div class="calculator-credit">
+    Calculator by MiralceWorks
+  </div>
+
+  <!-- 负扣税说明弹窗 -->
+  <div id="negativeGearingPopup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h4>负扣税说明<br><span class="en">Negative Gearing Explanation</span></h4>
+      <p>
+        负扣税是一种投资策略，主要应用于房地产投资。当投资产生的费用（如贷款利息、维护费用等）超过投资收入时，超出的部分可以用来抵扣其他应税收入，从而减少整体税负。
+        <br><br>
+        <span class="en">
+          Negative gearing is an investment strategy, primarily used in real estate. It occurs when the costs of owning
+          an investment property (such as loan interest, maintenance fees) exceed the income it generates. The excess
+          can be used to reduce tax on other income, thereby lowering overall tax liability.
+        </span>
+      </p>
+      <p>
+        例如：如果您的投资房产每年产生$20,000的租金收入，但相关费用（如贷款利息、维护费、折旧等）总计$35,000，那么您可以将这$15,000的差额用于抵扣其他收入的税款。
+        <br><br>
+        <span class="en">
+          For example: If your investment property generates $20,000 in rental income per year, but the associated costs
+          (such as loan interest, maintenance, depreciation, etc.) total $35,000, you can use this $15,000 difference to
+          offset tax on your other income.
+        </span>
+      </p>
+    </div>
   </div>
 
   <script src="script.js"></script>
