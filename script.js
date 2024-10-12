@@ -39,37 +39,39 @@ document.body.classList.add('zh-mode');
 updateLanguage();
 
 function calculateTax() {
+  // 获取现有的输入值
   const income = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
-  const resultTitle = document.getElementById('resultTitle');
-  const inputSummary = document.getElementById('inputSummary');
-  const result = document.getElementById('result');
-  const taxSavings = document.getElementById('taxSavings');
-
-  if (isNaN(income) || income <= 0) {
-    [inputSummary, result, taxSavings, resultTitle].forEach(el => el.style.display = 'none');
-    return;
-  }
-
-  resultTitle.style.display = 'block';
-
   const frequency = document.querySelector('input[name="frequency"]:checked').value;
   const enableNegativeGearing = document.getElementById('enableNegativeGearing').checked;
   const negativeGearing = enableNegativeGearing ? parseFloat(document.getElementById('negativeGearing').value.replace(/,/g, '')) || 0 : 0;
 
+  // 获取 Super 相关的输入值
+  const enableSuper = document.getElementById('enableSuper').checked;
+  const superRate = enableSuper ? parseFloat(document.getElementById('superRate').value) / 100 : 0;
+
+  // 计算年收入和 Super 金额
   const annualIncome = calculateAnnualIncome(income, frequency);
+  const superAmount = annualIncome * superRate;
 
-  displayInputSummary(annualIncome, negativeGearing);
+  // 显示输入摘要
+  displayInputSummary(annualIncome, negativeGearing, superAmount);
 
+  // 计算税额
   const originalTax = calculateTaxAmount(annualIncome);
   const newTax = calculateTaxAmount(annualIncome - negativeGearing);
   const taxSaved = originalTax - newTax;
 
-  displayResult(annualIncome, originalTax, annualIncome - originalTax);
+  // 显示计算结果
+  displayResult(annualIncome, superAmount, originalTax, annualIncome - originalTax - superAmount);
+
+  // 如果启用了负扣税,显示税收节省信息
+  const taxSavings = document.getElementById('taxSavings');
   taxSavings.style.display = enableNegativeGearing ? 'block' : 'none';
   if (enableNegativeGearing) {
     displayTaxSavings(originalTax, newTax, taxSaved);
   }
 
+  // 更新语言显示
   updateLanguage();
 }
 
@@ -86,7 +88,7 @@ function calculateTaxAmount(income) {
   return 51667 + (income - 180000) * 0.45;
 }
 
-function displayInputSummary(annualIncome, negativeGearing) {
+function displayInputSummary(annualIncome, negativeGearing, superAmount) {
   const inputSummaryDiv = document.getElementById('inputSummary');
   inputSummaryDiv.innerHTML = `
     <p class="summary-item">
@@ -110,13 +112,24 @@ function displayInputSummary(annualIncome, negativeGearing) {
     `;
   }
 
+  if (document.getElementById('enableSuper').checked && superAmount > 0) {
+    inputSummaryDiv.innerHTML += `
+      <p class="summary-item">
+        <span class="zh">您的 Super 金额为 </span>
+        <span class="en">Your Super amount </span>
+        <span class="highlight">$${formatNumber(superAmount)}</span>
+        <span class="zh"> 澳元</span>
+        <span class="en"> AUD</span>
+      </p>
+    `;
+  }
+
   updateLanguage();
 }
 
 // 显示计算结果的函数
-function displayResult(annualIncome, tax, netIncome) {
+function displayResult(annualIncome, superAmount, tax, netIncome) {
   const resultDiv = document.getElementById('result');
-  // 定义不同薪资周期的信息
   const frequencyFactor = {
     'annually': { zh: '每年', en: 'Annually', factor: 1 },
     'monthly': { zh: '每月', en: 'Monthly', factor: 1 / 12 },
@@ -124,13 +137,13 @@ function displayResult(annualIncome, tax, netIncome) {
     'weekly': { zh: '每周', en: 'Weekly', factor: 1 / 52 }
   };
 
-  // 创建结果表格的HTML
   let resultHTML = `
     <table>
       <thead>
         <tr>
           <th class="frequency-column" data-zh="薪资周期" data-en="Frequency"></th>
           <th class="amount-column" data-zh="总收入" data-en="Gross income"></th>
+          <th class="amount-column" data-zh="Super" data-en="Super"></th>
           <th class="amount-column" data-zh="税额" data-en="Income tax"></th>
           <th class="amount-column" data-zh="净收入" data-en="Net income"></th>
         </tr>
@@ -138,7 +151,6 @@ function displayResult(annualIncome, tax, netIncome) {
       <tbody>
   `;
 
-  // 为每个薪资周期生成一行数据
   for (let freq in frequencyFactor) {
     const { zh, en, factor } = frequencyFactor[freq];
     resultHTML += `
@@ -148,6 +160,7 @@ function displayResult(annualIncome, tax, netIncome) {
           <span class="en">${en}</span>
         </td>
         <td class="amount-column">$${formatNumber(annualIncome * factor)}</td>
+        <td class="amount-column">$${formatNumber(superAmount * factor)}</td>
         <td class="amount-column">$${formatNumber(tax * factor)}</td>
         <td class="amount-column">$${formatNumber(netIncome * factor)}</td>
       </tr>
@@ -157,6 +170,7 @@ function displayResult(annualIncome, tax, netIncome) {
   resultHTML += '</tbody></table>';
   resultDiv.innerHTML = resultHTML;
   updateLanguage();
+  adjustTableLayout(); // 添加这行
 }
 
 function displayTaxSavings(originalTax, newTax, taxSaved) {
@@ -290,3 +304,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// 添加这段代码到文件末尾或 DOMContentLoaded 事件监听器中
+document.getElementById('enableSuper').addEventListener('change', function () {
+  document.getElementById('superInput').style.display = this.checked ? 'block' : 'none';
+});
+
+function adjustTableLayout() {
+  const resultTable = document.querySelector('#result table');
+  if (resultTable) {
+    const containerWidth = resultTable.offsetWidth;
+    if (containerWidth < 500) { // 根据需要调整这个阈值
+      resultTable.classList.add('compact-layout');
+    } else {
+      resultTable.classList.remove('compact-layout');
+    }
+  }
+}
+
+// 在窗口大小改变时调用此函数
+window.addEventListener('resize', adjustTableLayout);
