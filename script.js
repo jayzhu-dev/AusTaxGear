@@ -146,13 +146,13 @@ function displayTaxSavings(originalTax, newTax, taxSaved) {
       <span class="en">Impact of Negative Gearing (AUD/Year)</span>
     </h3>
     <p>
-      <span class="zh">原始应纳税额: </span>
-      <span class="en">Original Taxable Amount: </span>
+      <span class="zh">原始税额: </span>
+      <span class="en">Original Tax Amount: </span>
       $${formatNumber(originalTax)}
     </p>
     <p>
-      <span class="zh">负税后应纳税额: </span>
-      <span class="en">Taxable Amount After Negative Gearing: </span>
+      <span class="zh">负税后税额: </span>
+      <span class="en">Tax Amount After Negative Gearing: </span>
       $${formatNumber(newTax)}
     </p>
     <p>

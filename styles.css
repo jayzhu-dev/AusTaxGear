@@ -32,7 +32,8 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
-  position: relative; /* 添加这行 */
+  position: relative;
+  /* 添加这行 */
 }
 
 .input-section:hover,
@@ -280,37 +281,43 @@ th {
   border-spacing: 0;
   width: 100%;
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 20px;
-  padding-right: 20px; /* 保持整个表格的右侧内边距 */
+  padding-right: 20px;
+  /* 保持整个表格的右侧内边距 */
 }
 
 #result table:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 #result table th,
 #result table td {
   border: none;
-  padding: 6px 5px; /* 减小垂直内边距以缩短行间距 */
-  text-align: right; /* 所有单元格右对齐 */
+  padding: 6px 5px;
+  /* 减小垂直内边距以缩短行间距 */
+  text-align: right;
+  /* 所有单元格右对齐 */
 }
 
 /* 调整第一列（薪资周期）的宽度和内边距 */
 #result table th:first-child,
 #result table td:first-child {
-  width: 20%; /* 设置第一列的宽度 */
+  width: 20%;
+  /* 设置第一列的宽度 */
   padding-left: 5px;
   padding-right: 5px;
-  text-align: right; /* 第一列右对齐 */
+  text-align: right;
+  /* 第一列右对齐 */
 }
 
 /* 平均分配右侧三列的宽度和内边距 */
 #result table th:not(:first-child),
 #result table td:not(:first-child) {
-  width: 26.67%; /* (100% - 20%) / 3 */
+  width: 26.67%;
+  /* (100% - 20%) / 3 */
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -318,11 +325,13 @@ th {
 /* 增加最后一列的右侧内边距 */
 #result table th:last-child,
 #result table td:last-child {
-  padding-right: 20px; /* 增加最后一列的右侧内边距 */
+  padding-right: 20px;
+  /* 增加最后一列的右侧内边距 */
 }
 
 #result table tr {
-  border-bottom: 1px solid #e0e0e0; /* 保持淡色横线 */
+  border-bottom: 1px solid #e0e0e0;
+  /* 保持淡色横线 */
 }
 
 #result table tr:last-child {
@@ -330,7 +339,8 @@ th {
 }
 
 #result table th {
-  border-bottom: 2px solid #d0d0d0; /* 保持表头底部边框稍粗一些 */
+  border-bottom: 2px solid #d0d0d0;
+  /* 保持表头底部边框稍粗一些 */
   font-weight: bold;
 }
 
@@ -338,12 +348,14 @@ th {
 @media (max-width: 767px) {
   #result table {
     font-size: 13px;
-    padding-right: 10px; /* 在手机上减少整个表格的右侧内边距 */
+    padding-right: 10px;
+    /* 在手机上减少整个表格的右侧内边距 */
   }
 
   #result table th,
   #result table td {
-    padding: 4px 2px; /* 在手机上进一步减小内边距 */
+    padding: 4px 2px;
+    /* 在手机上进一步减小内边距 */
   }
 
   #result table th:first-child,
@@ -360,7 +372,8 @@ th {
 
   #result table th:last-child,
   #result table td:last-child {
-    padding-right: 10px; /* 在手机上减少最后一列的右侧内边距 */
+    padding-right: 10px;
+    /* 在手机上减少最后一列的右侧内边距 */
   }
 }
 
@@ -370,13 +383,13 @@ th {
   border-radius: 8px;
   padding: 15px;
   margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #taxSavings:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .info-icon-container {
@@ -406,7 +419,8 @@ th {
 .info-text .en {
   font-size: 12px;
   font-weight: 500;
-  color: #999; /* 浅灰色，适用于中文和英文 */
+  color: #999;
+  /* 浅灰色，适用于中文和英文 */
 }
 
 .zh-mode .info-text .en,
@@ -425,12 +439,14 @@ th {
 
 .info-icon-container:hover .info-text .zh,
 .info-icon-container:hover .info-text .en {
-  color: #4CAF50; /* 鼠标悬停时变为绿色 */
+  color: #4CAF50;
+  /* 鼠标悬停时变为绿色 */
 }
 
 .dark-mode .info-icon-container:hover .info-text .zh,
 .dark-mode .info-icon-container:hover .info-text .en {
-  color: #81c784; /* 深色模式下鼠标悬停时的颜色 */
+  color: #81c784;
+  /* 深色模式下鼠标悬停时的颜色 */
 }
 
 .popup {
@@ -776,43 +792,49 @@ input[type="button"] {
 /* 输入摘要和税收节省的通用样式 */
 #inputSummary,
 #taxSavings {
-  font-size: 16px; /* 基础字号 */
+  font-size: 16px;
+  /* 基础字号 */
   line-height: 1.5;
   background-color: #f9f9f9;
   border-radius: 8px;
   padding: 15px;
   margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #inputSummary:hover,
 #taxSavings:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* 增大绿色数值的字号并改为深绿色 */
 #inputSummary .highlight,
 #taxSavings .saved,
 #result .highlight {
-  font-size: 120%; /* 比基础字号大 20% */
+  font-size: 120%;
+  /* 比基础字号大 20% */
   font-weight: bold;
-  color: #006400; /* 深绿色 */
+  color: #006400;
+  /* 深绿色 */
 }
 
 /* 针对手机显示界面的媒体查询 */
 @media (max-width: 767px) {
+
   #inputSummary,
   #taxSavings {
-    font-size: 14px; /* 手机上的基础字号 */
+    font-size: 14px;
+    /* 手机上的基础字号 */
     padding: 12px;
   }
 
   #inputSummary .highlight,
   #taxSavings .saved,
   #result .highlight {
-    font-size: 130%; /* 在手机上稍微再大一点 */
+    font-size: 130%;
+    /* 在手机上稍微再大一点 */
   }
 }
 
@@ -845,14 +867,16 @@ input[type="button"] {
 
 /* 针对英文模式的调整 */
 .en-mode .radio-group .radio-label {
-  font-weight: 600; /* 英文字体通常需要稍微轻一些的粗细 */
+  font-weight: 600;
+  /* 英文字体通常需要稍微轻一些的粗细 */
 }
 
 /* 保持其他样式不变 */
 
 @media (max-width: 767px) {
   .radio-group .radio-label {
-    font-size: 14px; /* 在手机上稍微减小字体大小 */
+    font-size: 14px;
+    /* 在手机上稍微减小字体大小 */
   }
 }
 
@@ -908,25 +932,57 @@ input[type="button"] {
 
 @media (max-width: 767px) {
   .result-header {
-    flex-direction: row; /* 改为行布局 */
-    justify-content: space-between; /* 两端对齐 */
-    align-items: center; /* 垂直居中对齐 */
+    flex-direction: row;
+    /* 改为行布局 */
+    justify-content: space-between;
+    /* 两端对齐 */
+    align-items: center;
+    /* 垂直居中对齐 */
   }
 
   #resultTitle {
-    font-size: 1.1em; /* 稍微减小标题字体大小 */
+    font-size: 1.1em;
+    /* 稍微减小标题字体大小 */
   }
 
   .info-icon-container {
-    margin-top: 0; /* 移除顶部边距 */
+    margin-top: 0;
+    /* 移除顶部边距 */
   }
 
   .info-text {
-    font-size: 10px; /* 减小文字大小 */
+    font-size: 10px;
+    /* 减小文字大小 */
   }
 
   .info-icon {
-    width: 14px; /* 稍微减小图标大小 */
+    width: 14px;
+    /* 稍微减小图标大小 */
     height: 14px;
+  }
+}
+
+/* 新增：针对手机设备的弹窗样式 */
+@media (max-width: 767px) {
+  .popup-content {
+    margin: 10% auto;
+    padding: 15px;
+    width: 90%;
+  }
+
+  .popup-content h4 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+
+  .popup-content p,
+  .popup-content td,
+  .popup-content th {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  .close {
+    font-size: 24px;
   }
 }
