@@ -116,9 +116,9 @@ function displayResult(annualIncome, tax, netIncome) {
     resultHTML += `
       <tr>
           <td class="center-align" data-zh="${label.split('<br>')[0]}" data-en="${label.split('<br>')[1].replace('<span class="en">', '').replace('</span>', '')}"></td>
-          <td class="right-align">$${formatNumber(annualIncome * factor, 2)}</td>
-          <td class="right-align">$${formatNumber(tax * factor, 2)}</td>
-          <td class="right-align">$${formatNumber(netIncome * factor, 2)}</td>
+          <td class="right-align">$${formatNumber(annualIncome * factor)}</td>
+          <td class="right-align">$${formatNumber(tax * factor)}</td>
+          <td class="right-align">$${formatNumber(netIncome * factor)}</td>
       </tr>
   `;
   }
@@ -156,7 +156,7 @@ function displayTaxSavings(originalTax, newTax, taxSaved) {
 }
 
 function formatNumber(num) {
-  return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return Math.round(num).toLocaleString('en-AU');
 }
 
 document.getElementById('enableNegativeGearing').addEventListener('change', function () {
