@@ -7,11 +7,13 @@
   <title>澳大利亚个税计算器 | Australian Tax Calculator</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Noto+Sans+SC:wght@100..900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -78,66 +80,7 @@
     </div>
 
     <div class="output-section">
-      <div class="info-icon-container">
-        <svg class="info-icon" viewBox="0 0 24 24" width="20" height="20">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-        </svg>
-        <span class="info-text">
-          <span class="info-text-cn" data-zh="税率说明" data-en="Tax Rate Information"></span>
-        </span>
-      </div>
-      <div id="taxRatePopup" class="popup">
-        <div class="popup-content">
-          <span class="close">&times;</span>
-          <h3>
-            <span class="zh">税率说明</span>
-            <span class="en">Tax Rate Information</span>
-          </h3>
-          <table class="tax-rate-table">
-            <tr>
-              <th>
-                <span class="zh">应纳税所得额</span>
-                <span class="en">Taxable Income</span>
-              </th>
-              <th>
-                <span class="zh">税率</span>
-                <span class="en">Tax Rate</span>
-              </th>
-            </tr>
-            <tr>
-              <td>$0 - $18,200</td>
-              <td>0%</td>
-            </tr>
-            <tr>
-              <td>$18,201 - $45,000</td>
-              <td>19%</td>
-            </tr>
-            <tr>
-              <td>$45,001 - $120,000</td>
-              <td>32.5%</td>
-            </tr>
-            <tr>
-              <td>$120,001 - $180,000</td>
-              <td>37%</td>
-            </tr>
-            <tr>
-              <td>$180,001+</td>
-              <td>45%</td>
-            </tr>
-          </table>
-          <div class="tax-rate-note">
-            <p>
-              <span class="zh">自 2024 年 7 月 1 日起执行</span>
-              <span class="en">Effective from July 1, 2024</span>
-            </p>
-            <p>
-              <span class="zh">数据来源：</span>
-              <span class="en">Data source: </span>
-              <a href="https://www.ato.gov.au/rates/individual-income-tax-rates/" target="_blank">ato.gov.au</a>
-            </p>
-          </div>
-        </div>
-      </div>
+      <h3 id="resultTitle" style="display: none;" data-zh="计算结果" data-en="Calculation Results"></h3>
       <div id="inputSummary" class="input-summary"></div>
       <div id="result"></div>
       <div id="taxSavings" class="tax-savings" style="display: none;"></div>

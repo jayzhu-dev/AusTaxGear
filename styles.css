@@ -89,6 +89,7 @@ select:focus {
   text-overflow: ellipsis;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 .radio-label:hover {
@@ -274,18 +275,107 @@ th {
 }
 
 #result table {
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  table-layout: fixed;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  padding-right: 20px; /* 保持整个表格的右侧内边距 */
 }
 
-#result th,
-#result td {
-  padding: 8px;
-  border: 1px solid #ddd;
+#result table:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-#result th {
-  background-color: #f2f2f2;
+#result table th,
+#result table td {
+  border: none;
+  padding: 6px 5px; /* 减小垂直内边距以缩短行间距 */
+  text-align: right;
+}
+
+/* 调整第一列（薪资周期）的宽度和内边距 */
+#result table th:first-child,
+#result table td:first-child {
+  width: 20%; /* 设置第一列的宽度 */
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* 平均分配右侧三列的宽度和内边距 */
+#result table th:not(:first-child),
+#result table td:not(:first-child) {
+  width: 26.67%; /* (100% - 20%) / 3 */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* 增加最后一列的右侧内边距 */
+#result table th:last-child,
+#result table td:last-child {
+  padding-right: 20px; /* 增加最后一列的右侧内边距 */
+}
+
+#result table tr {
+  border-bottom: 1px solid #e0e0e0; /* 保持淡色横线 */
+}
+
+#result table tr:last-child {
+  border-bottom: none;
+}
+
+#result table th {
+  border-bottom: 2px solid #d0d0d0; /* 保持表头底部边框稍粗一些 */
+  font-weight: bold;
+}
+
+/* 针对手机显示界面的媒体查询 */
+@media (max-width: 767px) {
+  #result table {
+    font-size: 13px;
+    padding-right: 10px; /* 在手机上减少整个表格的右侧内边距 */
+  }
+
+  #result table th,
+  #result table td {
+    padding: 4px 2px; /* 在手机上进一步减小内边距 */
+  }
+
+  #result table th:first-child,
+  #result table td:first-child {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  #result table th:not(:first-child),
+  #result table td:not(:first-child) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #result table th:last-child,
+  #result table td:last-child {
+    padding-right: 10px; /* 在手机上减少最后一列的右侧内边距 */
+  }
+}
+
+/* 负扣税影响卡片样式 */
+#taxSavings {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#taxSavings:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .info-icon-container {
@@ -606,6 +696,10 @@ th {
   display: none;
 }
 
+.zh-mode .zh {
+  display: inline;
+}
+
 .summary-item {
   margin-bottom: 10px;
 }
@@ -679,4 +773,87 @@ input[type="button"] {
 .en-mode input[type="button"] .en {
   font-size: 0.95em;
   /* 稍微增大字体大小 */
+}
+
+/* 输入摘要和税收节省的通用样式 */
+#inputSummary,
+#taxSavings {
+  font-size: 16px; /* 基础字号 */
+  line-height: 1.5;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#inputSummary:hover,
+#taxSavings:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* 增大绿色数值的字号并改为深绿色 */
+#inputSummary .highlight,
+#taxSavings .saved,
+#result .highlight {
+  font-size: 120%; /* 比基础字号大 20% */
+  font-weight: bold;
+  color: #006400; /* 深绿色 */
+}
+
+/* 针对手机显示界面的媒体查询 */
+@media (max-width: 767px) {
+  #inputSummary,
+  #taxSavings {
+    font-size: 14px; /* 手机上的基础字号 */
+    padding: 12px;
+  }
+
+  #inputSummary .highlight,
+  #taxSavings .saved,
+  #result .highlight {
+    font-size: 130%; /* 在手机上稍微再大一点 */
+  }
+}
+
+/* 保持其他样式不变 */
+
+/* 添���计算结果标题的样式 */
+#resultTitle {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+/* 调整输入摘要的上边距 */
+#inputSummary {
+  margin-top: 0;
+}
+
+/* 针对手机显示界面的媒体查询 */
+@media (max-width: 767px) {
+  #resultTitle {
+    font-size: 1.1em;
+  }
+}
+
+/* 加粗薪资周期和税收类型的按钮文字 */
+.radio-group .radio-label {
+  font-weight: bold;
+}
+
+/* 针对英文模式的调整 */
+.en-mode .radio-group .radio-label {
+  font-weight: 600; /* 英文字体通常需要稍微轻一些的粗细 */
+}
+
+/* 保持其他样式不变 */
+
+@media (max-width: 767px) {
+  .radio-group .radio-label {
+    font-size: 14px; /* 在手机上稍微减小字体大小 */
+  }
 }

@@ -27,8 +27,12 @@ function calculateTax() {
     document.getElementById('inputSummary').innerHTML = '';
     document.getElementById('result').innerHTML = '';
     document.getElementById('taxSavings').style.display = 'none';
+    document.getElementById('resultTitle').style.display = 'none'; // 隐藏标题
     return;
   }
+
+  // 显示"计算结果"标��
+  document.getElementById('resultTitle').style.display = 'block';
 
   const frequency = document.querySelector('input[name="frequency"]:checked').value;
   const taxType = document.querySelector('input[name="taxType"]:checked').value;
@@ -54,6 +58,8 @@ function calculateTax() {
   } else {
     document.getElementById('taxSavings').style.display = 'none';
   }
+
+  updateLanguage(); // 确保新显示的标题使用正确的语言
 }
 
 function calculateTaxAmount(income) {
@@ -101,14 +107,13 @@ function displayResult(annualIncome, tax, netIncome) {
   };
 
   let resultHTML = `
-    <h3 data-zh="计算结果" data-en="Calculation Results"></h3>
     <table>
-        <tr>
-            <th class="center-align" data-zh="薪资周期" data-en="Payment Frequency"></th>
-            <th class="right-align" data-zh="总收入" data-en="Gross Income"></th>
-            <th class="right-align" data-zh="税额" data-en="Tax"></th>
-            <th class="right-align" data-zh="净收入" data-en="Net Income"></th>
-          </tr>
+      <tr>
+        <th class="center-align" data-zh="薪资周期" data-en="Payment Frequency"></th>
+        <th class="right-align" data-zh="总收入" data-en="Gross Income"></th>
+        <th class="right-align" data-zh="税额" data-en="Tax"></th>
+        <th class="right-align" data-zh="净收入" data-en="Net Income"></th>
+      </tr>
   `;
 
   for (let freq in frequencyFactor) {
