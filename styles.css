@@ -279,15 +279,19 @@ th {
 #result table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 3px; /* 缩短行距，从 5px 改为 3px */
-  margin-top: -3px; /* 相应调整顶部边距 */
+  border-spacing: 0 3px;
+  /* 缩短行距，从 5px 改为 3px */
+  margin-top: -3px;
+  /* 相应调整顶部边距 */
 }
 
 #result table thead th {
-  background-color: #e8f5e9; /* 浅灰绿色背景 */
+  background-color: #e8f5e9;
+  /* 浅灰绿色背景 */
   color: #333;
   font-weight: normal;
-  padding: 8px 10px; /* 缩短上下内边距 */
+  padding: 8px 10px;
+  /* 缩短上下内边距 */
   text-align: right;
   border: none;
 }
@@ -296,28 +300,34 @@ th {
   text-align: left;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  padding-left: 15px; /* 增加第一列左侧内边距 */
+  padding-left: 15px;
+  /* 增加第一列左侧内边距 */
 }
 
 #result table thead th:last-child {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding-right: 15px; /* 增加第四列右侧内边距 */
+  padding-right: 15px;
+  /* 增加第四列右侧内边距 */
 }
 
 #result table tbody tr {
-  background-color: #f1f8e9; /* 浅灰绿色背景 */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+  background-color: #f1f8e9;
+  /* 浅灰绿色背景 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* 添加过渡效果 */
 }
 
 #result table tbody tr:hover {
-  transform: translateY(-3px); /* 添加浮动效果 */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  /* 添加浮动效果 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 #result table tbody td {
-  padding: 8px 10px; /* 缩短上下内边距 */
+  padding: 8px 10px;
+  /* 缩短上下内边距 */
   text-align: right;
   border: none;
 }
@@ -326,13 +336,15 @@ th {
   text-align: left;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  padding-left: 15px; /* 增加第一列左侧内边距 */
+  padding-left: 15px;
+  /* 增加第一列左侧内边距 */
 }
 
 #result table tbody td:last-child {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding-right: 15px; /* 增加第四列右侧内边距 */
+  padding-right: 15px;
+  /* 增加第四列右侧内边距 */
 }
 
 .frequency-column {
@@ -378,19 +390,24 @@ th {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.info-icon-container {
+/* 合并 .info-icon-container 和 .tax-rate-info 的共同样式 */
+.info-icon-container, .tax-rate-info {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 10px;
   cursor: pointer;
 }
 
-.info-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 2px;
+.info-icon-container {
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.tax-rate-info {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
   fill: #4CAF50;
+  flex-shrink: 0;
 }
 
 .info-text {
@@ -762,7 +779,7 @@ input[type="button"] {
   letter-spacing: 0.5px;
 }
 
-/* 确保英文模式下radio按钮的标签也使用粗体 */
+/* 确保英文模式下radio按钮的标签也用粗体 */
 .en-mode .radio-label {
   font-weight: 600;
 }
@@ -777,56 +794,53 @@ input[type="button"] {
 
 /* 输入摘要和税收节省的通用样式 */
 #inputSummary,
-#taxSavings,
-#result table {
+#taxSavings {
   font-size: 16px;
   /* 基础字号 */
   line-height: 1.5;
-  background-color: #ffffff; /* 改为纯白色背景 */
-  border-radius: 12px; /* 增加圆角 */
-  padding: 20px; /* 增加内边距 */
+  background-color: #ffffff;
+  /* 改为纯白色背景 */
+  border-radius: 12px;
+  /* 增加圆角 */
+  padding: 20px;
+  /* 增加内边距 */
   margin-top: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #inputSummary:hover,
-#taxSavings:hover,
-#result table:hover {
+#taxSavings:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* 增大绿色数值的字号并改为深绿色 */
 #inputSummary .highlight,
 #taxSavings .saved,
 #result .highlight {
-  font-size: 130%; /* 稍微增大字号 */
+  font-size: 120%;
+  /* 比基础字号大 20% */
   font-weight: bold;
-  color: #006400; /* 深绿色 */
+  color: #006400;
+  /* 深绿色 */
 }
 
 /* 针对手机显示界面的媒体查询 */
 @media (max-width: 767px) {
+
   #inputSummary,
-  #taxSavings,
-  #result table {
+  #taxSavings {
     font-size: 14px;
     /* 手机上的基础字号 */
-    padding: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.06);
-  }
-
-  #inputSummary:hover,
-  #taxSavings:hover,
-  #result table:hover {
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
   }
 
   #inputSummary .highlight,
   #taxSavings .saved,
   #result .highlight {
-    font-size: 140%; /* 在手机上稍微再大一点 */
+    font-size: 130%;
+    /* 在手机上稍微再大一点 */
   }
 }
 
@@ -977,4 +991,40 @@ input[type="button"] {
   .close {
     font-size: 24px;
   }
+}
+
+/* 新增：负扣税影响标题行样式 */
+#taxSavings .result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#taxSavings h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+#taxSavings .info-icon-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#taxSavings .info-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  fill: #4CAF50;
+}
+
+#taxSavings .info-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+}
+
+#taxSavings .info-icon-container:hover .info-text {
+  color: #4CAF50;
 }
