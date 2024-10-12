@@ -274,99 +274,18 @@ th {
 }
 
 #result table {
-  border-collapse: collapse;
   width: 100%;
-  border: none; /* 取消表格外侧边框 */
+  table-layout: fixed;
 }
 
-#result table th,
-#result table td {
-  border: none; /* 取消所有单元格边框 */
-  padding: 6px 4px; /* 缩短行间距 */
-  text-align: right;
+#result th,
+#result td {
+  padding: 8px;
+  border: 1px solid #ddd;
 }
 
-/* 薪资周期列居中显示 */
-#result table th:first-child,
-#result table td:first-child {
-  text-align: center; /* 居中对齐 */
-}
-
-#result table tr {
-  border-bottom: 2px solid #ddd; /* 加粗横向边框 */
-}
-
-#result table tr:last-child {
-  border-bottom: none; /* 最后一行不需要底部边框 */
-}
-
-#result table th {
-  border-bottom: 3px solid #ddd; /* 表头底部边框更粗 */
-  font-weight: bold;
-}
-
-/* 针对手机显示界面的媒体查询 */
-@media (max-width: 767px) {
-  /* 减小薪资周期和税收��型按钮的字号 */
-  .radio-label {
-    font-size: 14px; /* 减小字号 */
-  }
-
-  /* 减小计算结果表格显示内容的字号 */
-  #result table {
-    font-size: 14px; /* 减小表格内容的字号 */
-  }
-
-  #result table th,
-  #result table td {
-    padding: 4px 2px; /* 保持紧凑的内边距 */
-  }
-
-  #result h3 {
-    font-size: 16px; /* 调整标题大小以匹配新的表格字号 */
-  }
-
-  /* 确保其他元素的大小适当 */
-  #calculateButton {
-    font-size: 16px; /* 保持计算按钮较大以便于点击 */
-  }
-
-  #inputSummary,
-  #taxSavings {
-    font-size: 14px; /* 调整输入摘要和税收节省的字号 */
-  }
-
-  #inputSummary .highlight,
-  #taxSavings .saved {
-    font-size: 16px; /* 保持高亮金额稍大一些 */
-  }
-}
-
-/* 保持非手机界面的样式不变 */
-
-/* 负扣税影响卡片样式 */
-#taxSavings {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  margin-top: 30px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#taxSavings:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-#taxSavings h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-#taxSavings p {
-  margin: 8px 0;
-  line-height: 1.4;
+#result th {
+  background-color: #f2f2f2;
 }
 
 .info-icon-container {
@@ -760,112 +679,4 @@ input[type="button"] {
 .en-mode input[type="button"] .en {
   font-size: 0.95em;
   /* 稍微增大字体大小 */
-}
-
-/* 针对手机显示界面的媒体查询 */
-@media (max-width: 767px) {
-  /* 增大薪资周期和税收类型下各个按钮字体 */
-  .radio-label {
-    font-size: 110%;
-  }
-
-  /* 增大计算结果显示的字体 */
-  #result {
-    font-size: 110%;
-  }
-
-  /* 确保表格内容也跟随增大 */
-  #result table {
-    font-size: 100%; /* 这里设置100%是因为父元素#result已经增大到110% */
-  }
-
-  /* 可能需要调整的其他元素 */
-  #result h3 {
-    font-size: 120%; /* 标题可以稍微大一点 */
-  }
-
-  /* 如果税收节省部分也需要增大 */
-  #taxSavings {
-    font-size: 110%;
-  }
-}
-
-/* 输入摘要和负扣税影响的通用样式 */
-#inputSummary,
-#taxSavings {
-  font-size: 16px; /* 基础字号，与负扣税影响相同 */
-  line-height: 1.4;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* 突出显示金额 */
-#inputSummary .highlight,
-#taxSavings .saved {
-  font-size: 120%; /* 金额字号比基础字号大 20% */
-  font-weight: bold;
-  color: #4CAF50; /* 使用绿色突出显示，可以根据需要调整 */
-}
-
-/* 输入摘要和负扣税影响的标题样式 */
-#inputSummary h3,
-#taxSavings h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 110%; /* 标题稍大于正文 */
-}
-
-/* 输入摘要和负扣税影响的段落样式 */
-#inputSummary p,
-#taxSavings p {
-  margin: 5px 0;
-}
-
-/* 针对手机显示界面的媒体查询 */
-@media (max-width: 767px) {
-  #inputSummary,
-  #taxSavings {
-    padding: 12px;
-    margin-top: 15px;
-  }
-
-  #inputSummary .highlight,
-  #taxSavings .saved {
-    font-size: 130%; /* 在手机上可以稍微再大一点 */
-  }
-
-  /* 统一所有中文按钮的字号 */
-  .zh-mode button,
-  .zh-mode input[type="submit"],
-  .zh-mode input[type="button"],
-  .zh-mode .radio-label {
-    font-size: 16px; /* 与基础字号相同 */
-  }
-
-  /* 保持计算结果表格的字体大小 */
-  #result table {
-    font-size: 120%;
-  }
-
-  #result table th,
-  #result table td {
-    padding: 4px 2px;
-  }
-
-  #result h3 {
-    font-size: 130%;
-  }
-}
-
-/* 浮动效果 */
-#inputSummary:hover,
-#taxSavings:hover,
-#inputSummary:active,
-#taxSavings:active {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
