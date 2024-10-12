@@ -548,3 +548,32 @@ th {
 .dark-mode .calculator-credit {
   color: #aaa;
 }
+
+.tax-rate-note {
+  margin-top: 15px;
+  font-size: 0.8em;
+  color: #666;
+  text-align: right;
+}
+
+.tax-rate-note p {
+  margin: 5px 0;
+}
+
+.tax-rate-note a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.tax-rate-note a:hover {
+  text-decoration: underline;
+}
+
+/* 深色模式样式 */
+.dark-mode .tax-rate-note {
+  color: #aaa;
+}
+
+.dark-mode .tax-rate-note a {
+  color: #81c784;
+}
