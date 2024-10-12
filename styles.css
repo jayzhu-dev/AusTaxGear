@@ -274,18 +274,59 @@ th {
 }
 
 #result table {
+  border-collapse: collapse;
   width: 100%;
-  table-layout: fixed;
+  border: none; /* 取消表格外侧边框 */
 }
 
-#result th,
-#result td {
-  padding: 8px;
-  border: 1px solid #ddd;
+#result table th,
+#result table td {
+  border: none; /* 取消所有单元格边框 */
+  padding: 6px 4px; /* 缩短行间距 */
+  text-align: right;
 }
 
-#result th {
-  background-color: #f2f2f2;
+#result table th:first-child,
+#result table td:first-child {
+  text-align: left; /* 第一列左对齐 */
+}
+
+#result table tr {
+  border-bottom: 2px solid #ddd; /* 加粗横向边框 */
+}
+
+#result table tr:last-child {
+  border-bottom: none; /* 最后一行不需要底部边框 */
+}
+
+#result table th {
+  border-bottom: 3px solid #ddd; /* 表头底部边框更粗 */
+  font-weight: bold;
+}
+
+/* 针对手机显示界面的媒体查询 */
+@media (max-width: 767px) {
+  #result table {
+    font-size: 120%;
+  }
+
+  #result table th,
+  #result table td {
+    padding: 4px 2px; /* 在手机上进一步缩短行间距 */
+  }
+
+  /* 其他手机相关样式保持不变 */
+  .radio-label {
+    font-size: 110%;
+  }
+
+  #result h3 {
+    font-size: 130%;
+  }
+
+  #taxSavings {
+    font-size: 110%;
+  }
 }
 
 .info-icon-container {
@@ -679,4 +720,32 @@ input[type="button"] {
 .en-mode input[type="button"] .en {
   font-size: 0.95em;
   /* 稍微增大字体大小 */
+}
+
+/* 针对手机显示界面的媒体查询 */
+@media (max-width: 767px) {
+  /* 增大薪资周期和税收类型下各个按钮字体 */
+  .radio-label {
+    font-size: 110%;
+  }
+
+  /* 增大计算结果显示的字体 */
+  #result {
+    font-size: 110%;
+  }
+
+  /* 确保表格内容也跟随增大 */
+  #result table {
+    font-size: 100%; /* 这里设置100%是因为父元素#result已经增大到110% */
+  }
+
+  /* 可能需要调整的其他元素 */
+  #result h3 {
+    font-size: 120%; /* 标题可以稍微大一点 */
+  }
+
+  /* 如果税收节省部分也需要增大 */
+  #taxSavings {
+    font-size: 110%;
+  }
 }
