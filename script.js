@@ -39,13 +39,13 @@ document.body.classList.add('zh-mode');
 updateLanguage();
 
 function calculateTax() {
-  const income = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
+  const incomeInput = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
   const resultTitle = document.getElementById('resultTitle');
   const inputSummary = document.getElementById('inputSummary');
   const result = document.getElementById('result');
   const taxSavings = document.getElementById('taxSavings');
 
-  if (isNaN(income) || income <= 0) {
+  if (isNaN(incomeInput) || incomeInput <= 0) {
     [inputSummary, result, taxSavings, resultTitle].forEach(el => el.style.display = 'none');
     return;
   }
@@ -53,18 +53,25 @@ function calculateTax() {
   resultTitle.style.display = 'block';
 
   const frequency = document.querySelector('input[name="frequency"]:checked').value;
+  const taxType = document.querySelector('input[name="taxType"]:checked').value;
   const enableNegativeGearing = document.getElementById('enableNegativeGearing').checked;
   const negativeGearing = enableNegativeGearing ? parseFloat(document.getElementById('negativeGearing').value.replace(/,/g, '')) || 0 : 0;
 
-  const annualIncome = calculateAnnualIncome(income, frequency);
+  let annualIncome;
+  if (taxType === 'gross') {
+    annualIncome = calculateAnnualIncome(incomeInput, frequency);
+  } else {
+    // 如果选择的是净收入，我们需要反推总收入
+    annualIncome = calculateGrossFromNet(calculateAnnualIncome(incomeInput, frequency));
+  }
 
-  displayInputSummary(annualIncome, negativeGearing);
+  displayInputSummary(annualIncome, negativeGearing, taxType);
 
   const originalTax = calculateTaxAmount(annualIncome);
   const newTax = calculateTaxAmount(annualIncome - negativeGearing);
   const taxSaved = originalTax - newTax;
 
-  displayResult(annualIncome, originalTax, annualIncome - originalTax);
+  displayResult(annualIncome, originalTax, annualIncome - originalTax, taxType);
   taxSavings.style.display = enableNegativeGearing ? 'block' : 'none';
   if (enableNegativeGearing) {
     displayTaxSavings(originalTax, newTax, taxSaved);
@@ -86,12 +93,36 @@ function calculateTaxAmount(income) {
   return 51667 + (income - 180000) * 0.45;
 }
 
-function displayInputSummary(annualIncome, negativeGearing) {
+function calculateGrossFromNet(netIncome) {
+  // 这个函数使用二分法来反推总收入
+  let low = netIncome;
+  let high = netIncome * 2; // 假设最高税率不超过50%
+  let mid, tax, netFromGross;
+
+  while (high - low > 0.01) { // 精确到分
+    mid = (low + high) / 2;
+    tax = calculateTaxAmount(mid);
+    netFromGross = mid - tax;
+
+    if (netFromGross > netIncome) {
+      high = mid;
+    } else {
+      low = mid;
+    }
+  }
+
+  return Math.round(mid * 100) / 100; // 四舍五入到分
+}
+
+function displayInputSummary(annualIncome, negativeGearing, taxType) {
   const inputSummaryDiv = document.getElementById('inputSummary');
+  const incomeType = taxType === 'gross' ? '总收入' : '净收入';
+  const incomeTypeEn = taxType === 'gross' ? 'gross income' : 'net income';
+
   inputSummaryDiv.innerHTML = `
     <p class="summary-item">
       <span class="zh">您的年度总收入为 </span>
-      <span class="en">Annual gross income </span>
+      <span class="en">Annual ${incomeTypeEn} </span>
       <span class="highlight">$${formatNumber(annualIncome)}</span>
       <span class="zh"> 澳元</span>
       <span class="en"> AUD</span>
@@ -114,7 +145,7 @@ function displayInputSummary(annualIncome, negativeGearing) {
 }
 
 // 显示计算结果的函数
-function displayResult(annualIncome, tax, netIncome) {
+function displayResult(annualIncome, tax, netIncome, taxType) {
   const resultDiv = document.getElementById('result');
   // 定义不同薪资周期的信息
   const frequencyFactor = {
@@ -217,7 +248,7 @@ function debounce(func, wait) {
   };
 }
 
-const debouncedFormatInput = debounce(function(e) {
+const debouncedFormatInput = debounce(function (e) {
   let value = e.target.value.replace(/[^\d]/g, '');
   if (value !== '') {
     value = parseInt(value, 10).toLocaleString('en-AU');
