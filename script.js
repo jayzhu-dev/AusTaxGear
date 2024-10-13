@@ -346,21 +346,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // 设置养老金信息弹窗
   setupPopup(superannuationInfo, superannuationPopup);
 
-  const includeSuperannuation = document.getElementById('includeSuperannuation');
-  const superannuationRate = document.getElementById('superannuationRate');
+  const includeSuperannuationCheckbox = document.getElementById('includeSuperannuation');
+  const superannuationRateInput = document.getElementById('superannuationRate');
 
-  includeSuperannuation.addEventListener('change', function() {
-    superannuationRate.disabled = !this.checked;
+  includeSuperannuationCheckbox.addEventListener('change', function () {
     if (this.checked) {
-      superannuationRate.value = '11.5';
-      superannuationRate.removeAttribute('disabled'); // 确保在所有设备上都能启用输入框
+      superannuationRateInput.disabled = false;
+      superannuationRateInput.classList.add('enabled');
     } else {
-      superannuationRate.setAttribute('disabled', 'disabled');
+      superannuationRateInput.disabled = true;
+      superannuationRateInput.classList.remove('enabled');
     }
-    calculateTax();
   });
 
-  superannuationRate.addEventListener('input', function() {
+  superannuationRateInput.addEventListener('input', function () {
     let value = parseFloat(this.value);
     if (value < 11.5) this.value = '11.5';
     if (value > 15) this.value = '15';
@@ -368,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // 添加触摸事件监听器
-  superannuationRate.addEventListener('touchstart', function(e) {
+  superannuationRateInput.addEventListener('touchstart', function (e) {
     e.stopPropagation(); // 阻止事件冒泡
   });
 });
