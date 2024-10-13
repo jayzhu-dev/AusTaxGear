@@ -174,7 +174,7 @@ function displayResult(annualIncome, superannuation, tax, netIncome, taxType, fr
         <tr>
           <th class="frequency-column" data-zh="薪资周期" data-en="Frequency"></th>
           <th class="amount-column" data-zh="总收入" data-en="Gross income"></th>
-          <th class="amount-column" data-zh="养老金" data-en="Superannuation"></th>
+          <th class="amount-column" data-zh="养老金" data-en="Super"></th>
           <th class="amount-column" data-zh="税额" data-en="Income tax"></th>
           <th class="amount-column" data-zh="净收入" data-en="Net income"></th>
         </tr>
@@ -223,12 +223,12 @@ function displayTaxSavings(originalTax, newTax, taxSaved) {
       </div>
     </div>
     <p>
-      <span class="zh">原始应纳税额: </span>
+      <span class="zh">原始税额: </span>
       <span class="en">Original Tax Amount: </span>
       $${formatNumber(originalTax)}
     </p>
     <p>
-      <span class="zh">负扣税后应纳税额: </span>
+      <span class="zh">负扣税后税额: </span>
       <span class="en">Tax Amount After Negative Gearing: </span>
       $${formatNumber(newTax)}
     </p>
