@@ -308,7 +308,7 @@ th {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   padding-right: 15px;
-  /* 增加第四��右侧内边距 */
+  /* 增加第四列右侧内边距 */
 }
 
 #result table tbody tr {
@@ -1069,35 +1069,23 @@ input[type="button"] {
 
 .superannuation-rate-group {
   margin-top: 10px;
-  margin-left: 24px; /* 添加左边距,与复选框对齐 */
 }
 
-.superannuation-rate-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.superannuation-rate-wrapper label {
-  flex: 0 0 auto;
-  margin-right: 10px;
-  white-space: nowrap;
-}
-
-.superannuation-rate-wrapper input[type="number"] {
-  flex: 0 0 auto; /* 改为固定宽度 */
-  width: 80px; /* 设置一个合适的固定宽度 */
+.superannuation-rate-group input[type="number"] {
+  width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f0f0f0;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.superannuation-rate-wrapper input[type="number"]:not(:disabled) {
+
+.superannuation-rate-group input[type="number"]:not(:disabled) {
   background-color: #fff;
   border-color: #4CAF50;
 }
 
-.superannuation-rate-wrapper input[type="number"]:focus {
+.superannuation-rate-group input[type="number"]:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
