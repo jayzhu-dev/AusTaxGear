@@ -353,14 +353,17 @@ document.addEventListener('DOMContentLoaded', function () {
     superannuationRate.disabled = !this.checked;
     if (this.checked) {
       superannuationRate.value = '11.5';
+      superannuationRate.removeAttribute('disabled'); // 确保在所有设备上都能启用输入框
+    } else {
+      superannuationRate.setAttribute('disabled', 'disabled');
     }
-    calculateTax(); // 添加这行,使复选框变化时重新计算
+    calculateTax();
   });
 
   superannuationRate.addEventListener('input', function() {
     let value = parseFloat(this.value);
     if (value < 11.5) this.value = '11.5';
     if (value > 15) this.value = '15';
-    calculateTax(); // 添加这行,使输入值变化时重新计算
+    calculateTax();
   });
 });
