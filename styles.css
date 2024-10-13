@@ -1069,41 +1069,43 @@ input[type="button"] {
 
 .superannuation-rate-group {
   margin-top: 10px;
-  margin-left: 20px; /* 添加左侧缩进 */
+  margin-left: 20px; /* 保持左侧缩进 */
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中对齐 */
 }
 
 .superannuation-rate-group label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
+  margin-right: 10px; /* 添加标签和输入框之间的间距 */
+  white-space: nowrap; /* 防止标签换行 */
 }
 
 .superannuation-rate-group input[type="number"] {
-  width: calc(100% - 20px); /* 减少宽度以适应缩进 */
+  width: 70px; /* 缩短输入框宽度 */
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f0f0f0;
   transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.superannuation-rate-group input[type="number"]:not(:disabled) {
-  background-color: #fff;
-  border-color: #4CAF50;
-}
-
-.superannuation-rate-group input[type="number"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  -webkit-appearance: none; /* 移除iOS默认样式 */
+  -moz-appearance: textfield; /* 移除Firefox默认样式 */
 }
 
 /* 针对手机界面的样式调整 */
 @media (max-width: 767px) {
   .superannuation-rate-group {
     margin-left: 10px; /* 在手机界面上减少缩进 */
+    flex-wrap: wrap; /* 允许在小屏幕上换行 */
+  }
+
+  .superannuation-rate-group label {
+    margin-bottom: 5px; /* 在小屏幕上增加标签和输入框之间的垂直间距 */
   }
 
   .superannuation-rate-group input[type="number"] {
-    width: calc(100% - 10px); /* 调整宽度以适应手机屏幕 */
+    width: 60px; /* 在手机上进一步缩短输入框宽度 */
+    font-size: 16px; /* 保持字体大小,防止iOS自动缩放 */
+    -webkit-tap-highlight-color: transparent; /* 移除点击高亮 */
   }
+
+  // ... 其他手机相关样式 ...
 }

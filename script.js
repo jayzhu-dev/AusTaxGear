@@ -366,4 +366,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (value > 15) this.value = '15';
     calculateTax();
   });
+
+  // 添加触摸事件监听器
+  superannuationRate.addEventListener('touchstart', function(e) {
+    e.stopPropagation(); // 阻止事件冒泡
+  });
 });
