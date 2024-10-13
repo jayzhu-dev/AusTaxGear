@@ -943,7 +943,7 @@ input[type="button"] {
     justify-content: space-between;
     /* 两端对齐 */
     align-items: center;
-    /* 垂直居中对齐 */
+    /* 垂直���中对齐 */
   }
 
   #resultTitle {
@@ -1027,4 +1027,42 @@ input[type="button"] {
 
 #taxSavings .info-icon-container:hover .info-text {
   color: #4CAF50;
+}
+
+.superannuation-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.superannuation-group label {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.superannuation-info {
+  width: 16px;
+  height: 16px;
+  fill: #4CAF50;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* 确保复选框和文字垂直对齐 */
+.superannuation-group input[type="checkbox"] {
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* 调整文字的垂直对齐 */
+.superannuation-group label span {
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* 添加一个包装器来容纳文字和图标 */
+.superannuation-text-icon-wrapper {
+  display: flex;
+  align-items: center;
 }

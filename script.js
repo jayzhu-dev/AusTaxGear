@@ -40,6 +40,9 @@ updateLanguage();
 
 function calculateTax() {
   const incomeInput = parseFloat(document.getElementById('income').value.replace(/,/g, ''));
+  const includeSuperannuation = document.getElementById('includeSuperannuation').checked;
+  const frequency = document.querySelector('input[name="frequency"]:checked').value;
+  const taxType = document.querySelector('input[name="taxType"]:checked').value;
   const resultTitle = document.getElementById('resultTitle');
   const inputSummary = document.getElementById('inputSummary');
   const result = document.getElementById('result');
@@ -52,8 +55,6 @@ function calculateTax() {
 
   resultTitle.style.display = 'block';
 
-  const frequency = document.querySelector('input[name="frequency"]:checked').value;
-  const taxType = document.querySelector('input[name="taxType"]:checked').value;
   const enableNegativeGearing = document.getElementById('enableNegativeGearing').checked;
   const negativeGearing = enableNegativeGearing ? parseFloat(document.getElementById('negativeGearing').value.replace(/,/g, '')) || 0 : 0;
 
@@ -61,9 +62,22 @@ function calculateTax() {
   if (taxType === 'gross') {
     annualIncome = calculateAnnualIncome(incomeInput, frequency);
   } else {
-    // 如果选择的是净收入，我们需要反推总收入
     annualIncome = calculateGrossFromNet(calculateAnnualIncome(incomeInput, frequency));
   }
+
+  // 计算养老金
+  const superRate = 0.105; // 当前澳大利亚养老金率为10.5%
+  let superannuation = 0;
+  if (includeSuperannuation) {
+    superannuation = annualIncome * superRate / (1 + superRate);
+    annualIncome -= superannuation;
+  } else {
+    superannuation = annualIncome * superRate;
+  }
+
+  const taxableIncome = annualIncome - negativeGearing;
+  const tax = calculateTaxAmount(taxableIncome);
+  const netIncome = taxableIncome - tax;
 
   displayInputSummary(annualIncome, negativeGearing, taxType);
 
@@ -71,7 +85,7 @@ function calculateTax() {
   const newTax = calculateTaxAmount(annualIncome - negativeGearing);
   const taxSaved = originalTax - newTax;
 
-  displayResult(annualIncome, originalTax, annualIncome - originalTax, taxType);
+  displayResult(annualIncome, superannuation, tax, netIncome, taxType, frequency);
   taxSavings.style.display = enableNegativeGearing ? 'block' : 'none';
   if (enableNegativeGearing) {
     displayTaxSavings(originalTax, newTax, taxSaved);
@@ -145,9 +159,8 @@ function displayInputSummary(annualIncome, negativeGearing, taxType) {
 }
 
 // 显示计算结果的函数
-function displayResult(annualIncome, tax, netIncome, taxType) {
+function displayResult(annualIncome, superannuation, tax, netIncome, taxType, frequency) {
   const resultDiv = document.getElementById('result');
-  // 定义不同薪资周期的信息
   const frequencyFactor = {
     'annually': { zh: '每年', en: 'Annually', factor: 1 },
     'monthly': { zh: '每月', en: 'Monthly', factor: 1 / 12 },
@@ -155,13 +168,13 @@ function displayResult(annualIncome, tax, netIncome, taxType) {
     'weekly': { zh: '每周', en: 'Weekly', factor: 1 / 52 }
   };
 
-  // 创建结果表格的HTML
   let resultHTML = `
     <table>
       <thead>
         <tr>
           <th class="frequency-column" data-zh="薪资周期" data-en="Frequency"></th>
           <th class="amount-column" data-zh="总收入" data-en="Gross income"></th>
+          <th class="amount-column" data-zh="养老金" data-en="Superannuation"></th>
           <th class="amount-column" data-zh="税额" data-en="Income tax"></th>
           <th class="amount-column" data-zh="净收入" data-en="Net income"></th>
         </tr>
@@ -169,7 +182,6 @@ function displayResult(annualIncome, tax, netIncome, taxType) {
       <tbody>
   `;
 
-  // 为每个薪资周期生成一行数据
   for (let freq in frequencyFactor) {
     const { zh, en, factor } = frequencyFactor[freq];
     resultHTML += `
@@ -179,6 +191,7 @@ function displayResult(annualIncome, tax, netIncome, taxType) {
           <span class="en">${en}</span>
         </td>
         <td class="amount-column">$${formatNumber(annualIncome * factor)}</td>
+        <td class="amount-column">$${formatNumber(superannuation * factor)}</td>
         <td class="amount-column">$${formatNumber(tax * factor)}</td>
         <td class="amount-column">$${formatNumber(netIncome * factor)}</td>
       </tr>
@@ -320,4 +333,10 @@ document.addEventListener('DOMContentLoaded', function () {
       taxSavingsPopup.style.display = 'none';
     });
   }
+
+  const superannuationInfo = document.querySelector('.superannuation-info');
+  const superannuationPopup = document.getElementById('superannuationPopup');
+
+  // 设置养老金信息弹窗
+  setupPopup(superannuationInfo, superannuationPopup);
 });

@@ -31,7 +31,19 @@
         <input type="text" id="income" required>
       </div>
 
-      <div class="input-group">
+      <div class="input-group superannuation-group">
+        <label>
+          <input type="checkbox" id="includeSuperannuation">
+          <div class="superannuation-text-icon-wrapper">
+            <span data-zh="收入包含养老金" data-en="Income includes Superannuation"></span>
+            <svg class="info-icon superannuation-info" viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+            </svg>
+          </div>
+        </label>
+      </div>
+
+      <div class="input-group full-width">
         <label data-zh="薪资周期" data-en="Payment Frequency"></label>
         <div class="radio-group">
           <input type="radio" id="annually" name="frequency" value="annually" checked>
@@ -48,7 +60,7 @@
         </div>
       </div>
 
-      <div class="input-group">
+      <div class="input-group full-width">
         <label data-zh="税收类型" data-en="Income Tax Type"></label>
         <div class="radio-group">
           <input type="radio" id="gross" name="taxType" value="gross" checked>
@@ -129,7 +141,7 @@
   <div id="negativeGearingPopup" class="popup" style="display: none;">
     <div class="popup-content">
       <span class="close">&times;</span>
-      <h4 data-zh="负扣税说明" data-en="Negative Gearing Explanation"></h4>
+      <h4 data-zh="负税说明" data-en="Negative Gearing Explanation"></h4>
       <p data-zh="负扣税是一种投资策略，主要应用于房地产投资。当投资产生的费用（如贷款利息、维护费用等）超过投资收入时，超出的部分可以用来抵扣其他应税收入，从而减少整体税负。"
         data-en="Negative gearing is an investment strategy, primarily used in real estate. It occurs when the costs of owning an investment property (such as loan interest, maintenance fees) exceed the income it generates. The excess can be used to reduce tax on other income, thereby lowering overall tax liability.">
       </p>
@@ -188,6 +200,18 @@
       <p data-zh="请注意，这是一个简化的计算，实际税收影响可能因个人情况而异。建议咨询专业税务顾问以获得更准确的建议。"
         data-en="Please note that this is a simplified calculation. Actual tax impacts may vary depending on individual circumstances. It's recommended to consult a professional tax advisor for more accurate advice.">
       </p>
+    </div>
+  </div>
+
+  <!-- 添加养老金说明弹窗 -->
+  <div id="superannuationPopup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h4 data-zh="养老金计算说明" data-en="Superannuation Calculation Explanation"></h4>
+      <p data-zh="在澳大利亚,雇主必须为员工支付一定比例的养老金。当前的法定最低比例为10.5%。" 
+         data-en="In Australia, employers are required to pay a percentage of an employee's earnings into their superannuation fund. The current minimum rate is 10.5%."></p>
+      <p data-zh="如果您的收入包含养老金,计算器会从总收入中扣除养老金,然后计算税款。如果不包含,则会在总收入基础上额外计算养老金。" 
+         data-en="If your income includes superannuation, the calculator will deduct it from the gross income before calculating tax. If not included, it will calculate superannuation on top of your gross income."></p>
     </div>
   </div>
 
