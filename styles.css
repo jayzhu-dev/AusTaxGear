@@ -391,7 +391,8 @@ th {
 }
 
 /* 合并 .info-icon-container 和 .tax-rate-info 的共同样式 */
-.info-icon-container, .tax-rate-info {
+.info-icon-container,
+.tax-rate-info {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -1037,7 +1038,8 @@ input[type="button"] {
 .superannuation-group label {
   display: flex;
   align-items: center;
-  margin-right: 0; /* 移除右边距 */
+  margin-right: 0;
+  /* 移除右边距 */
 }
 
 .superannuation-info {
@@ -1046,7 +1048,8 @@ input[type="button"] {
   fill: #4CAF50;
   cursor: pointer;
   flex-shrink: 0;
-  margin-left: 4px; /* 添加左边距,与文字保持一定距离 */
+  margin-left: 4px;
+  /* 添加左边距,与文字保持一定距离 */
 }
 
 /* 确保复选框和文字垂直对齐 */
@@ -1065,12 +1068,14 @@ input[type="button"] {
 .superannuation-text-icon-wrapper {
   display: flex;
   align-items: center;
-  flex-grow: 1; /* 允许包装器占据剩余空间 */
+  flex-grow: 1;
+  /* 允许包装器占据剩余空间 */
 }
 
 .superannuation-rate-group {
   margin-top: 10px;
-  margin-left: 30px; /* 增加左侧缩进 */
+  margin-left: 30px;
+  /* 增加左侧缩进 */
   display: flex;
   align-items: center;
 }
@@ -1101,18 +1106,24 @@ input[type="button"] {
 /* 针对手机界面的样式调整 */
 @media (max-width: 767px) {
   .superannuation-rate-group {
-    margin-left: 20px; /* 在手机界面上稍微减少缩进 */
-    flex-wrap: nowrap; /* 保持在一行 */
+    margin-left: 20px;
+    /* 在手机界面上稍微减少缩进 */
+    flex-wrap: nowrap;
+    /* 保持在一行 */
   }
 
   .superannuation-rate-group label {
-    margin-bottom: 0; /* 移除垂直间距 */
-    font-size: 14px; /* 稍微减小标签字体大小 */
+    margin-bottom: 0;
+    /* 移除垂直间距 */
+    font-size: 14px;
+    /* 稍微减小标签字体大小 */
   }
 
   .superannuation-rate-group input[type="number"] {
-    width: 50px; /* 在手机上进一步缩短输入框宽度 */
-    padding: 4px; /* 进一步减小内边距 */
+    width: 50px;
+    /* 在手机上进一步缩短输入框宽度 */
+    padding: 4px;
+    /* 进一步减小内边距 */
     font-size: 14px;
   }
 }
