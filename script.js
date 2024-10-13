@@ -80,19 +80,24 @@ function calculateTax() {
     }
   }
 
+  // 计算税额时考虑负扣税
   const taxableIncome = annualIncome - negativeGearing;
   const tax = calculateTaxAmount(taxableIncome);
-  const netIncome = taxableIncome - tax;
+
+  // 计算净收入时不考虑负扣税
+  const netIncome = annualIncome - tax;
 
   displayInputSummary(annualIncome, negativeGearing, taxType);
 
+  // 计算原始税额和新税额,用于显示税收节省
   const originalTax = calculateTaxAmount(annualIncome);
-  const newTax = calculateTaxAmount(annualIncome - negativeGearing);
+  const newTax = calculateTaxAmount(taxableIncome);
   const taxSaved = originalTax - newTax;
 
   displayResult(annualIncome, superannuation, tax, netIncome, taxType, frequency);
 
   taxSavings.style.display = enableNegativeGearing ? 'block' : 'none';
+  
   if (enableNegativeGearing) {
     displayTaxSavings(originalTax, newTax, taxSaved);
   }
