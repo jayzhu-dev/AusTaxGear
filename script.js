@@ -54,25 +54,30 @@ function calculateTax() {
   }
 
   resultTitle.style.display = 'block';
-
   const enableNegativeGearing = document.getElementById('enableNegativeGearing').checked;
   const negativeGearing = enableNegativeGearing ? parseFloat(document.getElementById('negativeGearing').value.replace(/,/g, '')) || 0 : 0;
 
-  let annualIncome;
+  const superRate = includeSuperannuation ? parseFloat(document.getElementById('superannuationRate').value) / 100 : 0.115;
+
+  let annualIncome, superannuation;
+
   if (taxType === 'gross') {
     annualIncome = calculateAnnualIncome(incomeInput, frequency);
-  } else {
-    annualIncome = calculateGrossFromNet(calculateAnnualIncome(incomeInput, frequency));
-  }
-
-  // 计算养老金
-  const superRate = 0.105; // 当前澳大利亚养老金率为10.5%
-  let superannuation = 0;
-  if (includeSuperannuation) {
-    superannuation = annualIncome * superRate / (1 + superRate);
-    annualIncome -= superannuation;
-  } else {
-    superannuation = annualIncome * superRate;
+    if (includeSuperannuation) {
+      superannuation = annualIncome * superRate / (1 + superRate);
+      annualIncome -= superannuation;
+    } else {
+      superannuation = annualIncome * superRate;
+    }
+  } else { // net income
+    const netAnnualIncome = calculateAnnualIncome(incomeInput, frequency);
+    annualIncome = calculateGrossFromNet(netAnnualIncome);
+    if (includeSuperannuation) {
+      superannuation = annualIncome * superRate / (1 + superRate);
+      annualIncome -= superannuation;
+    } else {
+      superannuation = annualIncome * superRate;
+    }
   }
 
   const taxableIncome = annualIncome - negativeGearing;
@@ -86,6 +91,7 @@ function calculateTax() {
   const taxSaved = originalTax - newTax;
 
   displayResult(annualIncome, superannuation, tax, netIncome, taxType, frequency);
+
   taxSavings.style.display = enableNegativeGearing ? 'block' : 'none';
   if (enableNegativeGearing) {
     displayTaxSavings(originalTax, newTax, taxSaved);
@@ -339,4 +345,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 设置养老金信息弹窗
   setupPopup(superannuationInfo, superannuationPopup);
+
+  const includeSuperannuation = document.getElementById('includeSuperannuation');
+  const superannuationRate = document.getElementById('superannuationRate');
+
+  includeSuperannuation.addEventListener('change', function() {
+    superannuationRate.disabled = !this.checked;
+    if (this.checked) {
+      superannuationRate.value = '11.5';
+    }
+    calculateTax(); // 添加这行,使复选框变化时重新计算
+  });
+
+  superannuationRate.addEventListener('input', function() {
+    let value = parseFloat(this.value);
+    if (value < 11.5) this.value = '11.5';
+    if (value > 15) this.value = '15';
+    calculateTax(); // 添加这行,使输入值变化时重新计算
+  });
 });

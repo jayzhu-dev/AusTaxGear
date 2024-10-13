@@ -943,7 +943,7 @@ input[type="button"] {
     justify-content: space-between;
     /* 两端对齐 */
     align-items: center;
-    /* 垂直���中对齐 */
+    /* 垂直中对齐 */
   }
 
   #resultTitle {
@@ -1065,4 +1065,27 @@ input[type="button"] {
 .superannuation-text-icon-wrapper {
   display: flex;
   align-items: center;
+}
+
+.superannuation-rate-group {
+  margin-top: 10px;
+}
+
+.superannuation-rate-group input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.superannuation-rate-group input[type="number"]:not(:disabled) {
+  background-color: #fff;
+  border-color: #4CAF50;
+}
+
+.superannuation-rate-group input[type="number"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
