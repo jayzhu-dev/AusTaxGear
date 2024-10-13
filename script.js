@@ -170,7 +170,7 @@ function displayResult(annualIncome, superannuation, tax, netIncome, taxType, fr
   const frequencyFactor = {
     'annually': { zh: '每年', en: 'Annually', factor: 1 },
     'monthly': { zh: '每月', en: 'Monthly', factor: 1 / 12 },
-    'fortnightly': { zh: '每两周', en: 'Fortnightly', factor: 1 / 26 },
+    'fortnightly': { zh: '双周', en: 'Fortnightly', factor: 1 / 26 },
     'weekly': { zh: '每周', en: 'Weekly', factor: 1 / 52 }
   };
 
